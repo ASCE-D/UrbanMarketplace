@@ -8,6 +8,7 @@ const img2 =
   "https://cdn.shopify.com/s/files/1/2428/5565/products/Neemans-HaleBlack-ReLive-Knits-Jogger-FrontRightLogo-Comfortable-Shoes_1024x.jpg?v=1662876260";
 
 const Home = () => {
+
   const productList = [
     {
       name: "Mac Book",
@@ -56,5 +57,6 @@ const ProductCard = ({ name, id, price, handler, imgSrc }) => (
     </button>
   </div>
 );
+
 
 export default Home;
