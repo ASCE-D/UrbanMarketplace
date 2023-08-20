@@ -7,6 +7,7 @@ export const productReducer = createReducer(
     product: [],
     loading:false,
     productsCount:null,
+    error:null,
   },
   {
     ALL_PRODUCT_REQUEST: (state, action) => {
@@ -23,7 +24,12 @@ export const productReducer = createReducer(
   ALL_PRODUCT_FAIL:(state, action) => {
     loading = false;
     error= action.payload
-  }
+  },
+
+   CLEAR_ERRORS:(state, action) => {
+     
+     error=null
+   }
 
 
   
