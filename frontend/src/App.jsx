@@ -18,7 +18,7 @@ function App() {
        <Router>
         {/* <Header /> */}
         <Header2 />
-        
+        <Products/>
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/cart" element={<Cart />} />

@@ -15,7 +15,7 @@ const Home2 = () => {
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
-
+  // console.log("product ::",products);
   return (
     <div>
       {products && products.map(product => {

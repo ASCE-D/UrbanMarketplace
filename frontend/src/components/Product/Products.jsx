@@ -1,25 +1,44 @@
-import React, { useEffect } from "react";
+
+
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+ import { getAllProducts } from "../../actions/productAction";
+ import React, { useEffect } from 'react'
 
-
-
-const Products = ({product}) => {
-  const { products } = useSelector(
-    (state) => state.cart
+const Products = () => {
+  const{ products } =useSelector(
+    (state) => state.products
   );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+  console.log(products)
 
-  console.log("products", products)
-  console.log("product", product)
-  
   return (
-    <Link to={product._id}>
-      
-      <p>{product.name}</p>
-      <span>{products.price}</span>
+    <div>
+      <Product 
+      name={products[0].name}
+      price={products[0].price}
+      id={products[0]._id}
 
-    </Link>
-  );
-};
+      />
+    </div>
+  )
+}
+const Product = ({
+  
+  name,
+  price,
+  id,
+}) => {
+  return (
+    <>
+    <div>
+   {name} {price} {id}
+    </div>
+    </>
+  )
+}
 
-export default Products;
+export default Products
+
