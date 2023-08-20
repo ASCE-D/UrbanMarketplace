@@ -5,6 +5,8 @@ import App from './App.jsx'
 import './index.css'
 import store from './redux/store.js'
 
+// const export server = "http://localhost:5000";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

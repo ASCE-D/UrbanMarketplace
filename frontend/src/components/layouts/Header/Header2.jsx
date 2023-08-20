@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 import { useSelector } from "react-redux";
 
+
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
   return (

@@ -1,37 +1,26 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+// let product = [] 
 
 export const productReducer = createReducer(
   {
     //intial state for
-    product: [],
-    loading:false,
-    productsCount:null,
-    error:null,
+    products: []
   },
   {
     ALL_PRODUCT_REQUEST: (state, action) => {
-       loading = true;
-       
+      
+      product = [];
     },
 
-    ALL_PRODUCT_SUCCESS:(state, action) => {
-        loading = false;
-        product = action.payload.products;
-        productsCount= action.payload.productsCount;
-  },
-
-  ALL_PRODUCT_FAIL:(state, action) => {
-    loading = false;
-    error= action.payload
-  },
-
-   CLEAR_ERRORS:(state, action) => {
-     
-     error=null
-   }
+    ALL_PRODUCT_SUCCESS: (state, action) => {
+      
+      state.products = action.payload.products;
+      console.log("state.products",state.products);
+    },
 
 
-  
-}
+  }
 );
+
+createReducer()
