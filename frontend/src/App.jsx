@@ -8,6 +8,7 @@ import Home2 from "./components/Home/Home2.jsx"
 import Cart from "./components/Cart/Cart"
 import { Toaster } from "react-hot-toast";
 import Products from "./components/Product/Products"
+import About from "./components/layouts/About/About"
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         {/* <Header /> */}
         <Header2 />
         <Routes>
-          {/* <Route path="/" element={<Home />} /> */}
+          <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<Home />} />
         </Routes>

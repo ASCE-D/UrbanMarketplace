@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <footer className="bg-white dark:bg-gray-900  mt-auto">
+    <div className="flex flex-col">
+      <footer className="bg-white dark:bg-black  mt-auto">
         <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
@@ -18,17 +19,14 @@ const Footer = () => {
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a href="https://flowbite.com/" className="hover:underline">
-                      Flowbite
+                    <a href="https://github.com/ASCE-D/UrbanMarketplace" className="hover:underline">
+                      Source Code
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="https://tailwindcss.com/"
-                      className="hover:underline"
-                    >
-                      Tailwind CSS
-                    </a>
+                   <Link to={"/about"} >
+                      About Us
+                    </Link>
                   </li>
                 </ul>
               </div>
