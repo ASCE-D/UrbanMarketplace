@@ -9,6 +9,7 @@ import Cart from "./components/Cart/Cart"
 import { Toaster } from "react-hot-toast";
 import Products from "./components/Product/Products"
 import About from "./components/layouts/About/About"
+import ProductDetails from "./components/Product/ProductDetails"
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<Home />} />
+          {/* <Route path="/" element={<Home2 />} /> */}
+          <Route path="/product/:id" element={<ProductDetails/>} />
         </Routes>
         <Toaster />
         <Footer />

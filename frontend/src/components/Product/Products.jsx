@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../actions/productAction";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 const Products = () => {
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
@@ -20,7 +21,8 @@ const Products = () => {
     <div className="flex flex-wrap gap-4 p-4">
       {products.length > 0 ? (
         products.map((product) => (
-          <Product
+          <Link to={`/product/${product._id}`} >
+          <ProductCard
             key={product._id}
             imgSrc={product.images[0]?.url || ""} // Assuming you want to display the first image
             name={product.name}
@@ -31,6 +33,8 @@ const Products = () => {
             numOfReviews={product.numOfReviews}
             handler={addToCartHandler}
           />
+          </Link>
+         
         ))
       ) : (
         <h1 className="text-xl">No Items Yet</h1>
@@ -39,7 +43,8 @@ const Products = () => {
   );
 };
 
-const Product = ({
+const ProductCard  = ({
+
   imgSrc,
   name,
   price,
@@ -50,6 +55,7 @@ const Product = ({
   handler,
 }) => {
   return (
+  
     <div className="bg-white rounded-lg shadow-md p-4">
       <div className="relative">
         <img
@@ -72,6 +78,7 @@ const Product = ({
         Add to Cart
       </button>
     </div>
+   
   );
 };
 

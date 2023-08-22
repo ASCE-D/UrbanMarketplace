@@ -1,28 +1,13 @@
-import React, { useEffect } from 'react'
-import { getAllProducts } from "../../actions/productAction";
-import { useDispatch, useSelector } from 'react-redux';
-import Products from '../Product/Products';
-
-
+import React from 'react'
 
 const Home2 = () => {
-  // getAllProducts();
-  // const { products } = useSelector((state) => state.products )
-
-  // // console.log("product ::",product);
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getAllProducts());
-  // }, [dispatch]);
-  // // console.log("product ::",products);
-  // return (
-  //   <div>
-  //     {products && products.map(product => {
-  //       <Products product={product} />
-  //     })}
-  //   </div>
-  // )
+  return (
+    <div>
+      hello
+      fafaf
+    </div>
+    
+  )
 }
 
 export default Home2
