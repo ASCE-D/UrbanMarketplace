@@ -79,10 +79,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const resetToken = user.getResetPasswordToken();
 
   await user.save({ validateBeforeSave: false });
-
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  
+  const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
 
   const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
 
@@ -144,7 +142,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // Get User Detail
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
+  const user = req.user;
 
   res.status(200).json({
     success: true,
@@ -181,7 +179,8 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   };
 
   if (req.body.avatar !== "") {
-    const user = await User.findById(req.user.id);
+    // const user = await User.findById(req.user.id);
+    const user = req.user;
 
     const imageId = user.avatar.public_id;
 
@@ -199,7 +198,12 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     };
   }
 
-  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+  // const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+  //   new: true,
+  //   runValidators: true,
+  //   useFindAndModify: false,
+  // });
+  await User.findByIdAndUpdate(req.user.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
