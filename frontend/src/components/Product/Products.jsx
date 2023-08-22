@@ -13,6 +13,7 @@ const Products = () => {
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+  console.log(products)
 
   const addToCartHandler = (options) => {
     dispatch({ type: "addToCart", payload: options });
@@ -23,9 +24,10 @@ const Products = () => {
     <div className="flex flex-wrap gap-4 p-4">
       {products.length > 0 ? (
         products.map((product) => (
+         
           <Product
             key={product._id}
-            imgSrc={product.images[0]} // Assuming you want to display the first image
+            imgSrc={product.images[0]?.url||''} // Assuming you want to display the first image
             name={product.name}
             price={product.price}
             id={product._id}
