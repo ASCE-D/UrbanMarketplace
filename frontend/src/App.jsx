@@ -18,11 +18,10 @@ function App() {
        <Router>
         {/* <Header /> */}
         <Header2 />
-        <Products/>
         <Routes>
           {/* <Route path="/" element={<Home />} /> */}
           <Route path="/cart" element={<Cart />} />
-          <Route path="/" element={<Home2 />} />
+          <Route path="/" element={<Home />} />
         </Routes>
         <Toaster />
         <Footer />
