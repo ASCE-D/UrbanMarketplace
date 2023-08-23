@@ -6,13 +6,14 @@ import Home from "./components/Home/Home";
 import Home2 from "./components/Home/Home2.jsx";
 import Cart from "./components/Cart/Cart";
 import { Toaster } from "react-hot-toast";
-import Products from "./components/Product/Products";
+
 import About from "./components/layouts/About/About";
 import ProductDetails from "./components/Product/ProductDetails";
-import LoginPage from "./components/User/LoginSignUp";
-import SignUpPage from "./components/User/SignUpPage";
+import LoginSignUp from "./components/User/LoginSignUp";
 
-// import Products from "./components/Product/Products"
+
+
+export const server ="http://localhost:5000";
 
 function App() {
   return (
@@ -26,8 +27,8 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* <Route path="/" element={<Home2 />} /> */}
           <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
+
+          <Route path="/login" element={<LoginSignUp />} />
         </Routes>
         <Toaster />
         <Footer />
