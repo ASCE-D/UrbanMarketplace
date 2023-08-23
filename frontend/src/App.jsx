@@ -10,10 +10,9 @@ import { Toaster } from "react-hot-toast";
 import About from "./components/layouts/About/About";
 import ProductDetails from "./components/Product/ProductDetails";
 import LoginSignUp from "./components/User/LoginSignUp";
+import Products from "./components/Product/Products";
 
-
-
-export const server ="http://localhost:5000";
+export const server = "http://localhost:5000";
 
 function App() {
   return (
@@ -27,7 +26,8 @@ function App() {
           <Route path="/" element={<Home />} />
           {/* <Route path="/" element={<Home2 />} /> */}
           <Route path="/product/:id" element={<ProductDetails />} />
-
+          {/* <Route exact path="/products" component={Products} /> */}
+          <Route path="/products/:keyword" element={<Products />} />
           <Route path="/login" element={<LoginSignUp />} />
         </Routes>
         <Toaster />

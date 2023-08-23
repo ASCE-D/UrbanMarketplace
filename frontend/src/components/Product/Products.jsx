@@ -2,15 +2,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../actions/productAction";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 const Products = () => {
+
+  const params = useParams();
   const { products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
+  const keyword = params.keyword;
 
   useEffect(() => {
-    dispatch(getAllProducts());
-  }, [dispatch]);
-  console.log(products);
+    dispatch(getAllProducts(keyword));
+  }, [dispatch, params]);
+  
 
   const addToCartHandler = (options) => {
     dispatch({ type: "addToCart", payload: options });
@@ -18,7 +21,7 @@ const Products = () => {
     toast.success("Added To Cart");
   };
   return (
-    <div className="flex flex-wrap gap-4 p-4">
+    <div key={products._id} className="flex flex-wrap gap-4 p-4">
       {products.length > 0 ? (
         products.map((product) => (
           <Link to={`/product/${product._id}`} >
@@ -44,7 +47,6 @@ const Products = () => {
 };
 
 const ProductCard  = ({
-
   imgSrc,
   name,
   price,
