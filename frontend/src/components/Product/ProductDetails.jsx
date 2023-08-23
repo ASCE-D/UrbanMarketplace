@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails } from '../../actions/productAction';
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const ProductDetails = ( ) => {
     const params = useParams()
@@ -50,7 +51,8 @@ const ProductDetails = ( ) => {
                 product.Stock <= 0 && 'opacity-50 cursor-not-allowed'
               }`}
               disabled={product.Stock <= 0}
-              onClick={() => addToCartHandler({price, id, quantity: 1, imgSrc })}
+              onClick={() => addToCartHandler({ name:product.name ,price: product.price, id: product.id, quantity: 1, imgSrc: product.images[0].url })}
+
             >
               Add to Cart
             </button>
