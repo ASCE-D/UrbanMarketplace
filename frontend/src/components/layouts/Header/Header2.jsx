@@ -34,8 +34,8 @@ const Header = () => {
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     stroke-width="2"
                     d="M15 15l6-6m0 0l-6-6m6 6H3"
                   />
@@ -52,9 +52,9 @@ const Header = () => {
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M4 4h16M4 8h16M4 12h16"
               />
             </svg>
