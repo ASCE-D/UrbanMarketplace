@@ -38,19 +38,19 @@ const Home = () => {
     setCurrentIndex(slideIndex);
   };
 
-  useEffect(() => {
-    // Auto-slide interval
-    const autoSlideInterval = setInterval(() => {
-      const isLastSlide = currentIndex === slides.length - 1;
-      const newIndex = isLastSlide ? 0 : currentIndex + 1;
-      setCurrentIndex(newIndex);
-    }, 1500); // Change this value to adjust the interval (1500ms = 1.5 seconds)
+  // useEffect(() => {
+  //   // Auto-slide interval
+  //   const autoSlideInterval = setInterval(() => {
+  //     const isLastSlide = currentIndex === slides.length - 1;
+  //     const newIndex = isLastSlide ? 0 : currentIndex + 1;
+  //     setCurrentIndex(newIndex);
+  //   }, 1500); // Change this value to adjust the interval (1500ms = 1.5 seconds)
 
-    // Clear the interval when the component unmounts or when currentIndex changes
-    return () => {
-      clearInterval(autoSlideInterval);
-    };
-  }, [currentIndex, slides.length]);
+  //   // Clear the interval when the component unmounts or when currentIndex changes
+  //   return () => {
+  //     clearInterval(autoSlideInterval);
+  //   };
+  // }, [currentIndex, slides.length]);
 
   return (
     <>
