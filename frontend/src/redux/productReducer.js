@@ -14,7 +14,7 @@ export const productReducer = createReducer(
       state.products = [];
     },
 
-    ALL_PRODUCT_SUCCESS: (state, action) => {
+    ALL_PRODUCT_SUCCESS : (state, action) => {
       // state.loading = false;
       state.products = action.payload.products;
       // console.log("state.products",state.products);
