@@ -1,39 +1,66 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { cartReducer } from "./cartReducer";
 import { ProductDetailsReducer, productsReducer } from "./productReducer";
 import { profileReducer, userReducer } from "./reducers/userReducer";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const rootReducer = combineReducers({
+  cart: cartReducer,
+  products: productsReducer,
+  product: ProductDetailsReducer,
+  user: userReducer,
+  profile: profileReducer,
+});
+
+const persistConfig = {
+  key: "root",
+  storage,
+  
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
-  reducer: {
-    cart: cartReducer,
-    products:productsReducer,
-    product: ProductDetailsReducer,
-    user : userReducer,
-    profile: profileReducer,
-  
- 
-  // profile: profileReducer,
-  // forgotPassword: forgotPasswordReducer,
-  
-  // newOrder: newOrderReducer,
-  // myOrders: myOrdersReducer,
-  // orderDetails: orderDetailsReducer,
-  // newReview: newReviewReducer,
-  // newProduct: newProductReducer,
-  // product: productReducer,
-  // allOrders: allOrdersReducer,
-  // order: orderReducer,
-  // allUsers: allUsersReducer,
-  // userDetails: userDetailsReducer,
-  // productReviews: productReviewsReducer,
-  // review: reviewReducer,
-  },
+  reducer: persistedReducer,
 });
+let persistor = persistStore(store);
+
+export { store, persistor };
+
+// ==============================================
+
+// const store = configureStore({
+//   reducer: {
+//     cart: cartReducer,
+//     products:productsReducer,
+//     product: ProductDetailsReducer,
+//     user : userReducer,
+//     profile: profileReducer,
+
+// profile: profileReducer,
+// forgotPassword: forgotPasswordReducer,
+
+// newOrder: newOrderReducer,
+// myOrders: myOrdersReducer,
+// orderDetails: orderDetailsReducer,
+// newReview: newReviewReducer,
+// newProduct: newProductReducer,
+// product: productReducer,
+// allOrders: allOrdersReducer,
+// order: orderReducer,
+// allUsers: allUsersReducer,
+// userDetails: userDetailsReducer,
+// productReviews: productReviewsReducer,
+// review: reviewReducer,
+//   },
+// });
 // store.js
 
+// export default store;
 
+// ==============================================
 
-export default store;
 // import { configureStore } from "@reduxjs/toolkit";
 // import { persistStore, persistReducer } from "redux-persist";
 // import storage from "redux-persist/lib/storage"; // Defaults to localStorage for web

@@ -27,7 +27,7 @@ export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_USER_REQUEST" });
 
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = { headers: { "Content-Type": "multipart/form-data" }, withCredentials:true };
 
     const { data } = await axios.post(
       `${server}/api/v1/register`,

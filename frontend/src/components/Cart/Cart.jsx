@@ -129,7 +129,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="cart p-4 bg-gray-100 flex">
+    <div className="cart p-4 bg-gray-100 flex min-h-screen">
       <main className="w-3/4 pr-4">
         {cartItems.length > 0 ? (
           cartItems.map((i) => (
@@ -150,7 +150,7 @@ const Cart = () => {
         )}
       </main>
 
-      <aside className="w-1/4 bg-white p-4">
+      <aside className="w-1/4 h-1/4 bg-white p-4 overflow-hidden">
         <h2 className="text-lg font-semibold mb-2">Summary</h2>
         <div className="mb-2">
           <p>Subtotal: ₹{subTotal}</p>

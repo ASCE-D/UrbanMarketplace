@@ -17,6 +17,7 @@ import Dashboard from "./components/Admin/Dashboard";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdateProduct from "./components/Admin/UpdateProduct";
 import Profile from "./components/User/Profile";
+import Contact from "./components/layouts/Contact/Contact";
 
 export const server = "http://localhost:5000";
 
@@ -27,6 +28,7 @@ function App() {
         {/* <Header /> */}
         <Header2 />
         <Routes>
+        <Route path="/team" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<Home />} />
