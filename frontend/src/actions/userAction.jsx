@@ -5,14 +5,14 @@ export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_REQUEST" });
 
-    const config = { headers: { "Content-Type": "application/json" } };
-
+    const config = { headers: { "Content-Type": "application/json" }, withCredentials: true };
+     
     const { data } = await axios.post(
       `${server}/api/v1/login`,
       { email, password },
       config
     );
-    localStorage.setItem("authData", JSON.stringify(data.user))
+    localStorage.setItem("authData", JSON.stringify(data.token))
    
 
   console.log(data);
