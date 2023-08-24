@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails } from "../../actions/productAction";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import Loader from "../layouts/Loader/Loader";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -36,7 +37,7 @@ const ProductDetails = () => {
                 }}
               />
             ) : (
-              <p>No image available</p>
+              <p><Loader/></p>
             )}
           </div>
           <div>

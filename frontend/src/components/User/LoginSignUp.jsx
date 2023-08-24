@@ -3,6 +3,7 @@ import Loader from "../layouts/Loader/Loader";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
+import profileimage from "../../images/profile.png";
 import toast from "react-hot-toast";
 import "./LoginSignUp.css"
 
@@ -29,8 +30,8 @@ const LoginSignUp = () => {
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState("/Profile.png");
-  const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+  const [avatar, setAvatar] = useState(null);
+  const [avatarPreview, setAvatarPreview] = useState(null);
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -76,7 +77,7 @@ const LoginSignUp = () => {
     }
 
     if (isAuthenticated) {
-      navigate(redirect); // Use navigate to navigate
+      navigate('/account'); // Use navigate to navigate
     }
   }, [dispatch, error, isAuthenticated, navigate, redirect]);
 

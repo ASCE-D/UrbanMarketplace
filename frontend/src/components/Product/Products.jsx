@@ -3,6 +3,7 @@ import { getAllProducts } from "../../actions/productAction";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
+import Loader from "../layouts/Loader/Loader";
 const Products = () => {
 
   const params = useParams();
@@ -40,7 +41,7 @@ const Products = () => {
          
         ))
       ) : (
-        <h1 className="text-xl">No Items Yet</h1>
+        <h1 className="text-xl"><Loader/></h1>
       )}
     </div>
   );

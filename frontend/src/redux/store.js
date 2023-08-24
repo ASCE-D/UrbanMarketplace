@@ -1,15 +1,67 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { cartReducer } from "./cartReducer";
-import { ProductDetailsReducer, productReducer } from "./productReducer";
-import { userReducer } from "./reducers/userReducer";
+import { ProductDetailsReducer, productsReducer } from "./productReducer";
+import { profileReducer, userReducer } from "./reducers/userReducer";
 
 const store = configureStore({
   reducer: {
     cart: cartReducer,
-    products:productReducer,
+    products:productsReducer,
     product: ProductDetailsReducer,
-    user : userReducer
+    user : userReducer,
+    profile: profileReducer,
+  
+ 
+  // profile: profileReducer,
+  // forgotPassword: forgotPasswordReducer,
+  
+  // newOrder: newOrderReducer,
+  // myOrders: myOrdersReducer,
+  // orderDetails: orderDetailsReducer,
+  // newReview: newReviewReducer,
+  // newProduct: newProductReducer,
+  // product: productReducer,
+  // allOrders: allOrdersReducer,
+  // order: orderReducer,
+  // allUsers: allUsersReducer,
+  // userDetails: userDetailsReducer,
+  // productReviews: productReviewsReducer,
+  // review: reviewReducer,
   },
 });
+// store.js
+
+
 
 export default store;
+// import { configureStore } from "@reduxjs/toolkit";
+// import { persistStore, persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage"; // Defaults to localStorage for web
+// import { cartReducer } from "./cartReducer";
+// import { ProductDetailsReducer, productsReducer } from "./productReducer";
+// import { profileReducer, userReducer } from "./reducers/userReducer";
+
+// const persistConfig = {
+//   key: "root", // Key to access the persisted state
+//   storage, // Storage mechanism (localStorage, sessionStorage, etc.)
+//   // Optionally, you can blacklist or whitelist specific reducers if needed
+//   // blacklist: ["cart", "user"],
+// };
+
+// const rootReducer = {
+//   cart: cartReducer,
+//   products: productsReducer,
+//   product: ProductDetailsReducer,
+//   user: userReducer,
+//   profile: profileReducer,
+// };
+
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// const store = configureStore({
+//   reducer: persistedReducer,
+// });
+
+// const persistor = persistStore(store);
+
+// export { store, persistor };

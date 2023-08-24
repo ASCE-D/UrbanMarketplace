@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 export const userReducer = createReducer(
   {
     user: {},
+    
   },
   {
     REGISTER_USER_REQUEST: (state) => {
@@ -66,7 +67,7 @@ export const userReducer = createReducer(
 );
 
 export const profileReducer = createReducer(
-  {},
+    {},
   {
     UPDATE_PROFILE_REQUEST: (state) => {
       state.loading = true;
