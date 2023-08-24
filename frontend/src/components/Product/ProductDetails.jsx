@@ -62,7 +62,7 @@ const ProductDetails = () => {
                 addToCartHandler({
                   name: product.name,
                   price: product.price,
-                  id: product.id,
+                  id: product._id,
                   quantity: 1,
                   imgSrc: product.images[0].url,
                 })
