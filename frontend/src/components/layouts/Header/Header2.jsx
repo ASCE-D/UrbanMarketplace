@@ -18,27 +18,40 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-gray-900 text-white p-6 mb-6">
+    <nav className="bg-black text-white p-6">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/">
           <h2 className="text-xl font-semibold">UrbanMarketplace</h2>
         </Link>
 
         <form
-          className="flex items-center justify-center mt-8"
+          className="flex items-center justify-center mx-8 bg-white border rounded-md overflow-hidden shadow-md"
           onSubmit={searchSubmitHandler}
         >
           <input
             type="text"
-            className="border border-gray-300 px-4 py-2 rounded-l-md focus:outline-none focus:ring focus:border-blue-300"
-            placeholder="Search a Product ..."
+            className="flex-grow px-4 py-1 border-none focus:ring-0"
+            placeholder="Search for products..."
             onChange={(e) => setKeyword(e.target.value)}
           />
           <button
             type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+            className=" px-6 py-2 text-black font-semibold flex items-center justify-center  transition duration-300"
           >
-            Search
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 text-black pt-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15 15l6-6m0 0l-6-6m6 6H3"
+              />
+            </svg>
           </button>
         </form>
 
