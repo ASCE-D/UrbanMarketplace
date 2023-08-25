@@ -150,16 +150,41 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 };
 
 // get All Users
-export const getAllUsers = () => async (dispatch) => {
+export const getAllUsers = (user) => async (dispatch) => {
   try {
     dispatch({ type: "ALL_USERS_REQUEST" });
-    const { data } = await axios.get(`${server}/api/v1/admin/users`);
+    // const { data } = await axios.get(`${server}/api/v1/admin/users`);
+    // console.log(data);
+
+    const headers = {
+      isAuthenticatedUser: `token ${user.token}`,
+      'authorizeRoles': user.role
+    };
+    
+    const {data} = await axios.get('/api/v1/admin/users', { headers });
 
     dispatch({ type: "ALL_USERS_SUCCESS", payload: data.users });
   } catch (error) {
     dispatch({ type: "ALL_USERS_FAIL", payload: error.response.data.message });
   }
 };
+
+// export const getAllUsers = (isAdmin = false) => async (dispatch) => {
+//   try {
+//     dispatch({ type: "ALL_USERS_REQUEST" });
+
+//     // Include parameters in the request URL
+//     const url = isAdmin ? `${server}/api/v1/admin/users?admin=true` : `${server}/api/v1/admin/users`;
+    
+//     const { data } = await axios.get(url);
+    
+//     dispatch({ type: "ALL_USERS_SUCCESS", payload: data.users });
+//   } catch (error) {
+//     dispatch({ type: "ALL_USERS_FAIL", payload: error.response.data.message });
+//   }
+// };
+
+
 
 // get  User Details
 export const getUserDetails = (id) => async (dispatch) => {

@@ -47,7 +47,7 @@ function App() {
   }
 />
 
-<Route path="/admin/dashboard" element={<ProtectedRoute isAdmin={true}
+<Route path="/admin" element={<ProtectedRoute isAdmin={true}
          ><Dashboard /></ProtectedRoute>} />       
      
         
