@@ -70,8 +70,10 @@ export const getAllProducts =
 export const getAdminProduct = () => async (dispatch) => {
   try {
     dispatch({ type: "ADMIN_PRODUCT_REQUEST" });
-
-    const { data } = await axios.get(`${server}/api/v1/admin/products`);
+    const config = {
+      withCredentials: true,
+    };
+    const { data } = await axios.get(`${server}/api/v1/admin/products`,config);
 
     dispatch({
       type: "ADMIN_PRODUCT_SUCCESS",
@@ -86,7 +88,8 @@ export const getAdminProduct = () => async (dispatch) => {
 };
 
 // Create Product
-export const createProduct = (productData) => async (dispatch) => {
+export const createProduct = (jsonRepresentation) => async (dispatch) => {
+
   try {
     dispatch({ type: "NEW_PRODUCT_REQUEST" });
 
@@ -96,7 +99,7 @@ export const createProduct = (productData) => async (dispatch) => {
 
     const { data } = await axios.post(
       `${server}/api/v1/admin/product/new`,
-      productData,
+      jsonRepresentation,
       config
     );
 

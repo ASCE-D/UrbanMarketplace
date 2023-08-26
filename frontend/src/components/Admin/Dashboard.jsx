@@ -6,17 +6,21 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 const Dashboard = () => {
   const { user } = useSelector((state) => state.user);
+ 
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getAllUsers(user));
     }, [dispatch]);
-
+     const { users } = useSelector((state) => state.allUsers);
+    console.log(users);
+    
     const navigate = useNavigate();
 
   
   return (
     <div>
       {user.role}
+      {users[0].email}
  
     </div>
   )

@@ -47,29 +47,12 @@ function App() {
   }
 />
 
-<Route path="/admin" element={<ProtectedRoute isAdmin={true}
-         ><Dashboard /></ProtectedRoute>} />       
-     
+<Route path="/admin" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>} />       
+ <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductList /></ProtectedRoute>} />   
+ <Route path="/admin/product" element={<ProtectedRoute isAdmin={true}><NewProduct /></ProtectedRoute>} />
+ <Route path="/admin/product/:id" element={<ProtectedRoute isAdmin={true}><UpdateProduct /></ProtectedRoute>} /> 
         
-          {/* <ProtectedRoute
-          
-          path="/admin/products"
-          isAdmin={true}
-          element={<ProductList/>}
-        />
-        <ProtectedRoute
-          
-          path="/admin/product"
-          isAdmin={true}
-          element={<NewProduct/>}
-        />
-
-        <ProtectedRoute
-          
-          path="/admin/product/:id"
-          isAdmin={true}
-          element={<UpdateProduct/>}
-        /> */}
+  
         </Routes>
         <Toaster />
         <Footer />
