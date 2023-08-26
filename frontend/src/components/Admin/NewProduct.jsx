@@ -68,38 +68,71 @@ const NewProduct = () => {
   };
 
   return (
-    <div>
-         <h1>Create Product</h1>
-      <form onSubmit={createProductSubmitHandler} encType="multipart/form-data">
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required /><br />
-
-        <label htmlFor="price">Price:</label>
-        <input type="number" id="price" value={price} onChange={(e) => setPrice(e.target.value)} step="0.01" required /><br />
-
-        <label htmlFor="description">Description:</label>
-        <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} required /><br />
-
-        {/* <label htmlFor="category">Category:</label>
-        <select id="category" value={category} onChange={(e) => setCategory(e.target.value)} required>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
-          <option value="books">Books</option>
-          {/* Add more options as needed */}
-        {/* </select><br /> */} 
-        <label htmlFor="category">category:</label>
-        <textarea id="category" value={category} onChange={(e) => setCategory(e.target.value)} required /><br />
-
-        <label htmlFor="stock">Stock:</label>
-        <input type="number" id="stock" value={Stock} onChange={(e) => setStock(e.target.value)} required /><br />
-
-        {/* <label htmlFor="images">Images:</label>
-        <input type="file" id="images" onChange={(e) => setImages(e.target.files)} multiple accept="image/*" /><br /> */}
-
-        <button type="submit">Create Product</button>
+    <div className="p-6 bg-gray-100">
+      <h1 className="text-3xl font-semibold mb-6 text-center">Create Product</h1>
+      <form onSubmit={createProductSubmitHandler} encType="multipart/form-data" className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+        <label htmlFor="name" className="block font-medium mb-2">Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          className="border border-gray-300 p-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+  
+        <label htmlFor="price" className="block font-medium mb-2">Price:</label>
+        <input
+          type="number"
+          id="price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          step="0.01"
+          className="border border-gray-300 p-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+  
+        <label htmlFor="description" className="block font-medium mb-2">Description:</label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="border border-gray-300 p-2 rounded-md w-full mb-4 h-20 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+  
+        <label htmlFor="category" className="block font-medium mb-2">Category:</label>
+        <textarea
+          id="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          className="border border-gray-300 p-2 rounded-md w-full mb-4 h-16 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+  
+        <label htmlFor="stock" className="block font-medium mb-2">Stock:</label>
+        <input
+          type="number"
+          id="stock"
+          value={stock}
+          onChange={(e) => setStock(e.target.value)}
+          className="border border-gray-300 p-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+  
+        {/* Add images input here */}
+  
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Create Product
+        </button>
       </form>
     </div>
-  )
+  );
+  
+  
 }
 
 export default NewProduct
