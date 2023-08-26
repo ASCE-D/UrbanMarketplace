@@ -23,11 +23,12 @@ const Profile = () => {
           <div className="text-center">
             <h1 className="text-3xl font-bold mb-4">User Profile</h1>
             <div className="mb-4">
-              <img
+              {/* <img
                 src="profile-image.jpg"
                 alt="User Profile"
                 className="w-32 h-32 mx-auto rounded-full shadow-md"
-              />
+              /> 
+              USER AVTAR NEED TO ADD LATER ON */}
             </div>
             <div className="mb-6 text-gray-600">
               <p className="text-lg font-semibold">{user.name}</p>
