@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../../actions/userAction";
 
 const Header = () => {
   const { cartItems } = useSelector((state) => state.cart);
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
@@ -106,9 +112,40 @@ const Header = () => {
           </a>
         </div> */}
         <div className="flex items-center space-x-4">
+          <div>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4">
+                <button className="hover:text-gray-300" onClick={logoutHandler}>
+                  Logout
+                </button>
+                <button>
+                  <Link to="/account">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 hover:text-gray-300"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM15 10a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                  </Link>
+                </button>
+              </div>
+            ) : (
+              <button className="flex items-center hover:text-gray-300">
+                <Link to="/login">Login</Link>
+              </button>
+            )}
+          </div>
           <Link to="/cart" className="flex items-center hover:text-gray-300">
             <FiShoppingBag className="text-xl" />
-            <p className="ml-1">{cartItems.length}</p>
+            <sup className="ml-1">{cartItems.length}</sup>
           </Link>
         </div>
       </div>

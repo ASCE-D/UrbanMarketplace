@@ -21,7 +21,7 @@ const Profile = () => {
           <Loader />
         ) : (
           <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">User Profile</h1>
+            <h1 className="text-3xl font-bold mb-4">Your Profile</h1>
             <div className="mb-4">
               {/* <img
                 src="profile-image.jpg"
