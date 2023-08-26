@@ -30,7 +30,7 @@ const Header = () => {
         >
           <input
             type="text"
-            className="flex-grow px-4 py-1 border-none focus:ring-0"
+            className="text-black flex-grow px-4 py-1 border-none focus:ring-0 focus:outline-none"
             placeholder="Search for products..."
             onChange={(e) => setKeyword(e.target.value)}
           />
@@ -106,9 +106,6 @@ const Header = () => {
           </a>
         </div> */}
         <div className="flex items-center space-x-4">
-          <Link to="/" className="hover:text-gray-300">
-            Home
-          </Link>
           <Link to="/cart" className="flex items-center hover:text-gray-300">
             <FiShoppingBag className="text-xl" />
             <p className="ml-1">{cartItems.length}</p>
