@@ -19,6 +19,7 @@ import UpdateProduct from "./components/Admin/UpdateProduct";
 import Profile from "./components/User/Profile";
 import Contact from "./components/layouts/Contact/Contact";
 import Shipping from "./components/Cart/Shipping";
+import ConfirmOrder from "./components/Cart/ConfirmOrder";
 
 export const server = "http://localhost:5000";
 
@@ -48,6 +49,8 @@ function App() {
             }
           />
           <Route path="/shipping" element={<ProtectedRoute><Shipping /></ProtectedRoute>} />
+          <Route path="/order/confirm" element={<ProtectedRoute><ConfirmOrder /></ProtectedRoute>} />
+         
           <Route
             path="/admin"
             element={
