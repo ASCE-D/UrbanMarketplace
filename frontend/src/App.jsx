@@ -18,6 +18,7 @@ import ProtectedRoute from "./components/Route/ProtectedRoute";
 import UpdateProduct from "./components/Admin/UpdateProduct";
 import Profile from "./components/User/Profile";
 import Contact from "./components/layouts/Contact/Contact";
+import Shipping from "./components/Cart/Shipping";
 
 export const server = "http://localhost:5000";
 
@@ -28,7 +29,7 @@ function App() {
         {/* <Header /> */}
         <Header2 />
         <Routes>
-        <Route path="/team" element={<Contact />} />
+          <Route path="/team" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/" element={<Home />} />
@@ -39,20 +40,46 @@ function App() {
           <Route path="/login" element={<LoginSignUp />} />
           {/* <Route path="/account" element={<ProtectedRoute isAdmin={true} element={<Profile />} />} /> */}
           <Route
-  path="/account"
-  element={
-    <ProtectedRoute >
-      <Profile />
-    </ProtectedRoute>
-  }
-/>
-
-<Route path="/admin" element={<ProtectedRoute isAdmin={true}><Dashboard /></ProtectedRoute>} />       
- <Route path="/admin/products" element={<ProtectedRoute isAdmin={true}><ProductList /></ProtectedRoute>} />   
- <Route path="/admin/product" element={<ProtectedRoute isAdmin={true}><NewProduct /></ProtectedRoute>} />
- <Route path="/admin/product/:id" element={<ProtectedRoute isAdmin={true}><UpdateProduct /></ProtectedRoute>} /> 
-        
-  
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/shipping" element={<ProtectedRoute><Shipping /></ProtectedRoute>} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/products"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProductList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/product"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <NewProduct />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin/product/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UpdateProduct />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <Toaster />
         <Footer />

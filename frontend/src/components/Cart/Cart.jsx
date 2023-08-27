@@ -96,15 +96,16 @@
 import React from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cartItems, subTotal, tax, shipping, total } = useSelector(
     (state) => state.cart
   );
 
-  
+  const {isAuthenticated} = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  const Navigate = useNavigate();
   const increment = (id) => {
     dispatch({
       type: "addToCart",
@@ -126,6 +127,9 @@ const Cart = () => {
       payload: id,
     });
     dispatch({ type: "calculatePrice" });
+  };
+  const checkoutHandler = () => {
+    isAuthenticated ? Navigate("/shipping"):Navigate("/login") ;
   };
 
   return (
@@ -158,7 +162,7 @@ const Cart = () => {
           <p>Tax: ₹{tax}</p>
           <p>Total: ₹{total}</p>
         </div>
-        <button className="w-full bg-blue-500 text-white py-2 rounded">
+        <button onClick={checkoutHandler} className="w-full bg-blue-500 text-white py-2 rounded">
           Proceed to Checkout
         </button>
       </aside>

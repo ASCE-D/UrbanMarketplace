@@ -3,6 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 export const cartReducer = createReducer(
   {
     cartItems: [],
+    shippingInfo: {},
     subTotal: 0,
     shipping: 0,
     tax: 0,
@@ -42,5 +43,8 @@ export const cartReducer = createReducer(
       state.tax = +(state.subTotal * 0.18).toFixed();
       state.total = state.subTotal + state.tax + state.shipping;
     },
+    SAVE_SHIPPING_INFO: (state, action) => {
+      state.shippingInfo = action.payload;
+    }
   }
 );

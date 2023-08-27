@@ -3,7 +3,7 @@ import Loader from "../layouts/Loader/Loader";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
-import profileimage from "../../images/profile.png";
+// import profileimage from "../../images/profile.png";
 import toast from "react-hot-toast";
 import "./LoginSignUp.css"
 
