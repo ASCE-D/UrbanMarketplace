@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loader from "../layouts/Loader/Loader";
+import Sidebar from "../Admin/Sidebar";
+import Dashboard from "../Admin/Dashboard";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -15,57 +17,31 @@ const Profile = () => {
   }, [navigate, isAuthenticated]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="max-w-md w-full mx-auto bg-white rounded-lg shadow-lg p-6">
-        {loading ? (
-          <Loader />
-        ) : (
-          <div className="text-center">
-            <h1 className="text-3xl font-bold mb-4">Your Profile</h1>
-            <div className="mb-4">
-              {/* <img
-                src="profile-image.jpg"
-                alt="User Profile"
-                className="w-32 h-32 mx-auto rounded-full shadow-md"
-              /> 
-              USER AVTAR NEED TO ADD LATER ON */}
-            </div>
-            <div className="mb-6 text-gray-600">
-              <p className="text-lg font-semibold">{user.name}</p>
-              <p className="text-md">{user.email}</p>
-              <p className="text-md">
-                <span >Role:</span> {user.role}
-              </p>
-            </div>
-            <div className="text-gray-600">
-              <p className="text-md">
-                Joined on:{" "}
-                {new Date(user.createdAt).toLocaleDateString("en-GB", {
-                  day: "2-digit",
-                  month: "long",
-                  year: "numeric"
-                })}
-              </p>
-              <p className="text-md">
-                Joined at:{" "}
-                {new Date(user.createdAt).toLocaleString("en-US", {
-                  hour: "numeric",
-                  minute: "numeric",
-                  second: "numeric",
-                  hour12: true,
-                  timeZone: "UTC"
-                })}{" "}
-                UTC
-              </p>
-            </div>
-            <button className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-              Edit Profile
-            </button>
+    <div className="flex">
+      <Sidebar />
+
+      {/* Vertical line */}
+      <div className="w-px bg-gray-300 dark:bg-gray-600"></div>
+
+      {/* Main Content */}
+      <main className="flex-1 bg-white p-4">
+        {/* Profile information */}
+        <div className="flex items-center mb-4">
+          <img
+            className="w-64 h-64 rounded-full mr-4"
+            src="/path-to-profile-image.jpg"
+            alt="Profile"
+          />
+          <div>
+            <h2 className="text-xl font-semibold">{user.name}</h2>
+            <p className="text-gray-500">{user.role}</p>
+            <p className="text-gray-500">{user.email}</p>
           </div>
-        )}
-      </div>
+        </div>
+        
+        {user.role === "admin"? <Dashboard /> : none}
+      </main>
     </div>
   );
 };
-
 export default Profile;
