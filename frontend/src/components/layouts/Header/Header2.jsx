@@ -24,7 +24,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-black text-white p-6 z-[100] sticky w-full">
+    <nav className="bg-black text-white p-6 z-[100]  w-full">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/">
           <h2 className="text-xl font-semibold">UrbanMarketplace</h2>

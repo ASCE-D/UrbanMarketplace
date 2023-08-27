@@ -19,8 +19,8 @@ const Footer = () => {
                 </h2>
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
-                    <a href="https://github.com/ASCE-D/UrbanMarketplace" className="hover:underline">
-                      Source Code
+                    <a href="/team" className="hover:underline">
+                      Team
                     </a>
                   </li>
                   <li>
@@ -37,7 +37,7 @@ const Footer = () => {
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
                     <a
-                      href="https://github.com/themesberg/flowbite"
+                      href="https://github.com/ASCE-D/UrbanMarketplace"
                       className="hover:underline "
                     >
                       Github
@@ -45,7 +45,7 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="https://discord.gg/4eeurUVvTy"
+                      href="https://discord.gg/DGcRpF62"
                       className="hover:underline"
                     >
                       Discord

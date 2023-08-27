@@ -22,7 +22,7 @@ const Products = () => {
     toast.success("Added To Cart");
   };
   return (
-    <div key={products._id} className="flex flex-wrap gap-4 p-4">
+    <div key={products._id} className="grid grid-cols-4 gap-4 p-4 mx-16 mb-14">
       {products.length > 0 ? (
         products.map((product) => (
           <Link to={`/product/${product._id}`} >

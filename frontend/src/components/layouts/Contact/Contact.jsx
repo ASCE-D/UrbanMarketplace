@@ -93,29 +93,29 @@ const Contact = () => {
     {
       name: "Deepesh Genani",
       description:
-        "The CEO's role in raising a company's corporate IQ is to establish an atmosphere that promotes knowledge sharing and collaboration.",
+        "Aspiring MERN Stack Developer with a strong foundation in web development and a positive mindset. Passionate about creating impactful applications using MongoDB, ExpressJS, ReactJS, and NodeJS. Eager to learn and grow in a dynamic tech environment. Open to exciting opportunities in the field. 🚀#MERNStack #WebDevelopment #TechEnthusiast.",
       imgSrc:
-        "https://cdn.tuk.dev/assets/photo-1564061170517-d3907caa96ea.jfif",
+        "https://cdn.discordapp.com/avatars/743003407236726837/a3b439d9b699a8f0874d9bab801efd56.png?size=4096",
       github: "https://github.com/ASCE-D",
       linkedin: "https://linkedin.com/in/deepeshgenani",
-      portfolio: "https://linkedin.com/in/deepeshgenani",
+      portfolio: "",
     },
     {
       name: "Ashish Pandey",
       description:
         "The CEO's role in raising a company's corporate IQ is to establish an atmosphere that promotes knowledge sharing and collaboration.",
-      imgSrc: "",
-      github: "",
-      linkedin: "",
+      imgSrc: "https://crypto-eacsqnzcj-tehnoking.vercel.app/assets/IMG-20230220-WA0015-e4b240b5.jpg",
+      github: "https://github.com/Ashish2271",
+      linkedin: "https://www.linkedin.com/in/ashish-pandey-338b73220/",
       portfolio: "",
     },
     {
       name: "Anirudh Rai",
       description:
-        "The CEO's role in raising a company's corporate IQ is to establish an atmosphere that promotes knowledge sharing and collaboration.",
-      imgSrc: "",
-      github: "",
-      linkedin: "",
+      "Passionate and driven college student aspiring to become a developer.  Committed to honing technical skills and staying up-to-date with emerging technologies. Seeking opportunities to collaborate with industry professionals and contribute to innovative projects. Open to internships that offer growth and hands-on experience in the dynamic field of software development.",
+      imgSrc: "https://cdn.discordapp.com/attachments/950500676897767448/1145401152138133544/my_pic.jpg",
+      github: "https://github.com/ANii693",
+      linkedin: "https://www.linkedin.com/in/anirudh-rai693/",
       portfolio: "",
     },
     // Add other team members here
