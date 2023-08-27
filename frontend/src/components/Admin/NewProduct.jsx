@@ -114,7 +114,7 @@ const NewProduct = () => {
         <input
           type="number"
           id="stock"
-          value={stock}
+          value={Stock}
           onChange={(e) => setStock(e.target.value)}
           className="border border-gray-300 p-2 rounded-md w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
           required
