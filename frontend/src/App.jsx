@@ -20,6 +20,7 @@ import Profile from "./components/User/Profile";
 import Contact from "./components/layouts/Contact/Contact";
 import Shipping from "./components/Cart/Shipping";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
+import UpdateProfile from "./components/User/UpdateProfile";
 
 export const server = "http://localhost:5000";
 
@@ -48,9 +49,32 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/shipping" element={<ProtectedRoute><Shipping /></ProtectedRoute>} />
-          <Route path="/order/confirm" element={<ProtectedRoute><ConfirmOrder /></ProtectedRoute>} />
-         
+
+          <Route
+            path="/me/update"
+            element={
+              <ProtectedRoute>
+                <UpdateProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/shipping"
+            element={
+              <ProtectedRoute>
+                <Shipping />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/order/confirm"
+            element={
+              <ProtectedRoute>
+                <ConfirmOrder />
+              </ProtectedRoute>
+            }
+          />
+
           <Route
             path="/admin"
             element={
