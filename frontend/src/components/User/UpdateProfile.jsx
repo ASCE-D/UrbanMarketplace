@@ -154,7 +154,7 @@ const UpdateProfile = () => {
 
     myForm.set("name", name);
     myForm.set("email", email);
-    myForm.set("avatar", avatar);
+    myForm.set("avatar", avatar||'') ;
     dispatch(updateProfile(myForm));
   };
 
