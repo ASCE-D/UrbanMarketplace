@@ -39,7 +39,7 @@ const Profile = () => {
           </div>
         </div>
         
-        {user.role === "admin"? <Dashboard /> : none}
+        {user.role === "admin"? <Dashboard /> : null}
       </main>
     </div>
   );
