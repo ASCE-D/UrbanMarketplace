@@ -249,7 +249,7 @@ const UpdateProfile = () => {
             <input
               type="submit"
               value="Update"
-              className="updateProfileBtn bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
+              className="updateProfileBtn bg-black hover:bg-blue-500 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
             />
           </form>
         </div>

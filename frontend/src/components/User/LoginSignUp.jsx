@@ -3,7 +3,7 @@ import Loader from "../layouts/Loader/Loader";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
-// import profileimage from "../../images/profile.png";
+import profileimage from "../../images/Profile.png";
 import toast from "react-hot-toast";
 import "./LoginSignUp.css"
 
@@ -30,8 +30,8 @@ const LoginSignUp = () => {
 
   const { name, email, password } = user;
 
-  const [avatar, setAvatar] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(null);
+  const [avatar, setAvatar] = useState(profileimage);
+  const [avatarPreview, setAvatarPreview] = useState(profileimage);
 
   const loginSubmit = (e) => {
     e.preventDefault();
@@ -40,13 +40,13 @@ const LoginSignUp = () => {
 
   const registerSubmit = (e) => {
     e.preventDefault();
-    const userData = {
-      name,
-      email,
-      password,
-    };
-  
-    dispatch(register(userData));
+    const myForm = new FormData();
+
+    myForm.set("name", name);
+    myForm.set("email", email);
+    myForm.set("password", password);
+    myForm.set("avatar", avatar);
+    dispatch(register(myForm));
   };
 
   const registerDataChange = (e) => {

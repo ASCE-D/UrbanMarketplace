@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const {user} = useSelector((state) => 
+    state.user)
+
   return (
     <div>
       <button
@@ -51,13 +55,13 @@ const Sidebar = () => {
                 <span className="ml-3">Profile</span>
               </a>
             </li>
-            <li>
+            { user.role === "admin" ? <li>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-gray-200 dark:hover:text-gray-700 group"
               >
                 <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-black"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -67,14 +71,14 @@ const Sidebar = () => {
                 </svg>
                 <span className="ml-3">Admin Dashboard</span>
               </a>
-            </li>
+            </li> : null}
             <li>
               <a
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-black hover:bg-gray-200 dark:hover:text-gray-700 group"
               >
                 <svg
-                  class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                  className="flex-shrink-0 w-5 h-5 text-black transition duration-75 dark:text-gray-400 group-hover:text-black dark:group-hover:text-black"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
