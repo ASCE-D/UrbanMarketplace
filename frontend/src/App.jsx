@@ -6,7 +6,7 @@ import Home from "./components/Home/Home";
 import Home2 from "./components/Home/Home2.jsx";
 import Cart from "./components/Cart/Cart";
 import { Toaster } from "react-hot-toast";
-
+import Payment from "./components/Cart/Payment";
 import About from "./components/layouts/About/About";
 import ProductDetails from "./components/Product/ProductDetails";
 import LoginSignUp from "./components/User/LoginSignUp";
@@ -21,12 +21,41 @@ import Contact from "./components/layouts/Contact/Contact";
 import Shipping from "./components/Cart/Shipping";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import UpdateProfile from "./components/User/UpdateProfile";
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+// import axios from "axios";
+// import { store } from "./redux/store";
+// import { loadUser } from "./actions/userAction";
+// import { useEffect, useState } from "react";
+import Process from "./components/Cart/Process";
+import OrderSuccess from "./components/Cart/OrderSuccess";
+import MyOrders from "./components/Order/MyOrders";
 
 export const server = "http://localhost:5000";
 
 function App() {
+  // const [stripeApiKey, setStripeApiKey] = useState("");
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   withCredentials: true,
+  // };
+
+  // async function getStripeApiKey() {
+  //   const { data } = await axios.get(`${server}/api/v1/stripeapikey`, config);
+  //   console.log(data);
+  //   setStripeApiKey(data.stripeApiKey);
+  // }
+
+  // useEffect(() => {
+  //   store.dispatch(loadUser());
+
+  //   getStripeApiKey();
+  // }, []);
   return (
     <>
+      {/* {console.log("ii", stripeApiKey)} */}
       <Router>
         {/* <Header /> */}
         <Header2 />
@@ -107,6 +136,25 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                <MyOrders />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/success"
+            element={
+              <ProtectedRoute>
+                <OrderSuccess />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/payment" element={<Process />} />
         </Routes>
         <Toaster />
         <Footer />

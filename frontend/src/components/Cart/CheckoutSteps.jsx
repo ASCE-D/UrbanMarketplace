@@ -5,21 +5,39 @@ const CheckoutSteps = ({ activeStep }) => {
   const steps = [
     {
       label: "Shipping Details",
-      icon: <FaShippingFast className={`text-2xl ${activeStep >= 0 ? "text-tomato" : "text-gray-600"}`} />,
+      icon: (
+        <FaShippingFast
+          className={`text-2xl ${
+            activeStep >= 0 ? "text-black" : "text-gray-600"
+          }`}
+        />
+      ),
     },
     {
       label: "Confirm Order",
-      icon: <FaCheck className={`text-2xl ${activeStep >= 1 ? "text-tomato" : "text-gray-600"}`} />,
+      icon: (
+        <FaCheck
+          className={`text-2xl ${
+            activeStep >= 1 ? "text-black" : "text-gray-600"
+          }`}
+        />
+      ),
     },
     {
       label: "Payment",
-      icon: <FaMoneyBillAlt className={`text-2xl ${activeStep >= 2 ? "text-tomato" : "text-gray-600"}`} />,
+      icon: (
+        <FaMoneyBillAlt
+          className={`text-2xl ${
+            activeStep >= 2 ? "text-black" : "text-gray-600"
+          }`}
+        />
+      ),
     },
   ];
 
   const stepClasses = (index) =>
     `flex items-center ${
-      activeStep >= index ? "text-tomato" : "text-gray-600"
+      activeStep >= index ? "text-black" : "text-gray-600"
     }`;
 
   return (

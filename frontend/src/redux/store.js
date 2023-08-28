@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { cartReducer } from "./cartReducer";
 import { ProductDetailsReducer, newProductReducer, productsReducer } from "./productReducer";
 import { allUsersReducer, profileReducer, userReducer } from "./reducers/userReducer";
+import { newOrderReducer, myOrdersReducer, orderDetailsReducer, allOrdersReducer, orderReducer } from "./reducers/orderReducer";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
@@ -13,12 +14,16 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   allUsers: allUsersReducer,
   newProduct: newProductReducer,
+  newOrder: newOrderReducer,
+  myOrders: myOrdersReducer,
+  allOrders: allOrdersReducer,
+  orderDetails: orderDetailsReducer,
+  order: orderReducer,
 });
 
 const persistConfig = {
   key: "root",
-  storage,
-  
+  storage,  
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
