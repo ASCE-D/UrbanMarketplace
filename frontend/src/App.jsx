@@ -31,7 +31,7 @@ import Process from "./components/Cart/Process";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
 
-export const server = "http://localhost:5000";
+export const server = "https://urbanmarketplace-api.onrender.com";
 
 function App() {
   // const [stripeApiKey, setStripeApiKey] = useState("");
