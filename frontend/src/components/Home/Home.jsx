@@ -137,7 +137,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Products />
+        <Products itemsPerPage={4}/>
       </div>
     </>
   );
