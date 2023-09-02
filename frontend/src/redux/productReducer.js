@@ -95,7 +95,7 @@ export const newProductReducer = createReducer(
   }
 );
 
-export const productReducer = createReducer(
+export const updateproductReducer = createReducer(
   {},
   {
     DELETE_PRODUCT_REQUEST: (state) => {
