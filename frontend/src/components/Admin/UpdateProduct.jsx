@@ -12,7 +12,6 @@
 // import { FaTree, FaFileAlt, FaDatabase, FaSpellCheck, FaMoneyBill } from "react-icons/fa"; // Import React Icons
 // import SideBar from "./Sidebar";
 
-
 // const UpdateProduct = () => {
 //   const dispatch = useDispatch();
 //   const Navigate = useNavigate();
@@ -181,7 +180,7 @@
 //             </div>
 
 //             <div>
-           
+
 //               <input
 //                 type="number"
 //                 placeholder="Stock"
@@ -231,10 +230,7 @@
 
 // export default UpdateProduct;
 
-
-
-import { useNavigate, useParams } from 'react-router-dom';
-
+import { useNavigate, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -244,7 +240,6 @@ import {
 } from "../../actions/productAction";
 import toast, { Toaster } from "react-hot-toast";
 import { FaTree, FaFileAlt, FaMoneyBill, FaSpellCheck } from "react-icons/fa";
-import SideBar from "./Sidebar";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
@@ -257,12 +252,11 @@ const UpdateProduct = () => {
     error: updateError,
     isUpdated,
   } = useSelector((state) => state.updateproduct);
-
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [stock, setStock] = useState(0);
+  const [name, setName] = useState(product.name || ""); // Set default value to product.name
+  const [price, setPrice] = useState(product.price || 0); // Set default value to product.price
+  const [description, setDescription] = useState(product.description || ""); // Set default value to product.description
+  const [category, setCategory] = useState(product.category || ""); // Set default value to product.category
+  const [stock, setStock] = useState(product.stock || 0); // Set default value to product.stock
   const [images, setImages] = useState([]);
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -276,8 +270,6 @@ const UpdateProduct = () => {
     "Camera",
     "SmartPhones",
   ];
-
-  // const productId = params.id;
 
   useEffect(() => {
     if (product && product.id !== params.id) {
@@ -305,15 +297,7 @@ const UpdateProduct = () => {
       Navigate("/admin/products");
       dispatch({ type: "UPDATE_PRODUCT_RESET" });
     }
-  }, [
-    dispatch,
-    error,
-    history,
-    isUpdated,
-    params.id,
-    product,
-    updateError,
-  ]);
+  }, [dispatch, error, history, isUpdated, params.id, product, updateError]);
 
   const updateProductSubmitHandler = (e) => {
     e.preventDefault();
@@ -355,29 +339,28 @@ const UpdateProduct = () => {
 
   return (
     <>
-      <div className="dashboard">
-        {/* <SideBar /> */}
-        <div className="newProductContainer">
+      <div className="flex justify-center items-center h-screen">
+        <div className="updateProfileBox bg-white w-100 p-4 shadow-md">
           <form
             className="createProductForm"
             encType="multipart/form-data"
             onSubmit={updateProductSubmitHandler}
           >
-            <h1 className="text-2xl font-semibold mb-4">Update Product</h1>
+            <h1 className="pdateProfileHeading text-lg text-center border-b-2 border-gray-300 pb-2 mb-4">
+              Update Product
+            </h1>
 
             <div className="mb-4">
-              
               <input
                 type="text"
                 placeholder="Product Name"
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="border p-2 w-full"
+                className="border p-2 w"
               />
             </div>
             <div className="mb-4">
-            
               <input
                 type="number"
                 placeholder="Price"
@@ -389,7 +372,6 @@ const UpdateProduct = () => {
             </div>
 
             <div className="mb-4">
-         
               <textarea
                 placeholder="Product Description"
                 value={description}
@@ -401,7 +383,6 @@ const UpdateProduct = () => {
             </div>
 
             <div className="mb-4">
-           
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
