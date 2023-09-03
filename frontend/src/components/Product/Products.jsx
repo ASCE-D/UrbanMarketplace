@@ -1,23 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../actions/productAction";
+import { _getAllProducts, getAllProducts } from "../../actions/productAction";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
 import Loader from "../layouts/Loader/Loader";
 import ReactPaginate from "react-paginate";
 
-const Products = ({ itemsPerPage }) => {
+const Products = ({ category }) => {
   const params = useParams();
-  const { products, filteredProductsCount} = useSelector((state) => state.products);
- 
+  const { products, filteredProductsCount } = useSelector(
+    (state) => state.products
+  );
   const dispatch = useDispatch();
   const keyword = params.keyword;
-
+  console.log(products);
   const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([0, 250000]);
+  const [ratings, setRatings] = useState();
 
   useEffect(() => {
-    dispatch(getAllProducts(keyword, currentPage));
-  }, [dispatch, params, currentPage]);
+    dispatch(getAllProducts(keyword, currentPage, price, category, ratings));
+  }, [dispatch, params, currentPage, category, price, ratings]);
 
   const addToCartHandler = (options) => {
     dispatch({ type: "addToCart", payload: options });
