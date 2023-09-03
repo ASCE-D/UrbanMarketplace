@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { _getAllProducts, getAllProducts } from "../../actions/productAction";
+import { getAllProducts } from "../../actions/productAction";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link, useParams } from "react-router-dom";
@@ -99,7 +99,7 @@ const ProductCard = ({
         <img
           src={imgSrc}
           alt={name}
-          className="w-full h-40 object-cover rounded-md"
+          className="w-full h-60 object-cover rounded-md"
         />
         <span className="bg-green-500 text-white px-2 py-1 rounded-full absolute top-2 right-2">
           {stock > 0 ? "In Stock" : "Out of Stock"}

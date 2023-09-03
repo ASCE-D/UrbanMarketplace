@@ -240,6 +240,7 @@ import {
 } from "../../actions/productAction";
 import toast, { Toaster } from "react-hot-toast";
 import { FaTree, FaFileAlt, FaMoneyBill, FaSpellCheck } from "react-icons/fa";
+import Loader from "../layouts/Loader/Loader";
 
 const UpdateProduct = () => {
   const dispatch = useDispatch();
@@ -341,116 +342,120 @@ const UpdateProduct = () => {
     <>
       <div className="flex justify-center items-center h-screen">
         <div className="updateProfileBox bg-white w-100 p-4 shadow-md">
-          <form
-            className="createProductForm"
-            encType="multipart/form-data"
-            onSubmit={updateProductSubmitHandler}
-          >
-            <h1 className="pdateProfileHeading text-lg text-center border-b-2 border-gray-300 pb-2 mb-4">
-              Update Product
-            </h1>
+          {loading ? (
+            <Loader />
+          ) : (
+            <form
+              className="createProductForm"
+              encType="multipart/form-data"
+              onSubmit={updateProductSubmitHandler}
+            >
+              <h1 className="pdateProfileHeading text-lg text-center border-b-2 border-gray-300 pb-2 mb-4">
+                Update Product
+              </h1>
 
-            <div className="mb-4">
-              <input
-                type="text"
-                placeholder="Product Name"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="border p-2 w"
-              />
-            </div>
-            <div className="mb-4">
-              <input
-                type="number"
-                placeholder="Price"
-                required
-                onChange={(e) => setPrice(e.target.value)}
-                value={price}
-                className="border p-2 w-full"
-              />
-            </div>
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="Product Name"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="border p-2 w"
+                />
+              </div>
+              <div className="mb-4">
+                <input
+                  type="number"
+                  placeholder="Price"
+                  required
+                  onChange={(e) => setPrice(e.target.value)}
+                  value={price}
+                  className="border p-2 w-full"
+                />
+              </div>
 
-            <div className="mb-4">
-              <textarea
-                placeholder="Product Description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                cols="30"
-                rows="1"
-                className="border p-2 w-full"
-              ></textarea>
-            </div>
+              <div className="mb-4">
+                <textarea
+                  placeholder="Product Description"
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                  cols="30"
+                  rows="1"
+                  className="border p-2 w-full"
+                ></textarea>
+              </div>
 
-            <div className="mb-4">
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="border p-2 w-full"
-              >
-                <option value="">Choose Category</option>
-                {categories.map((cate) => (
-                  <option key={cate} value={cate}>
-                    {cate}
-                  </option>
-                ))}
-              </select>
-            </div>
+              <div className="mb-4">
+                <select
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="border p-2 w-full"
+                >
+                  <option value="">Choose Category</option>
+                  {categories.map((cate) => (
+                    <option key={cate} value={cate}>
+                      {cate}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-            <div className="mb-4">
-              <input
-                type="number"
-                placeholder="Stock"
-                required
-                onChange={(e) => setStock(e.target.value)}
-                value={stock}
-                className="border p-2 w-full"
-              />
-            </div>
+              <div className="mb-4">
+                <input
+                  type="number"
+                  placeholder="Stock"
+                  required
+                  onChange={(e) => setStock(e.target.value)}
+                  value={stock}
+                  className="border p-2 w-full"
+                />
+              </div>
 
-            <div className="mb-4">
-              <input
-                type="file"
-                name="avatar"
-                accept="image/*"
-                onChange={updateProductImagesChange}
-                multiple
-                className="border p-2 w-full"
-              />
-            </div>
+              <div className="mb-4">
+                <input
+                  type="file"
+                  name="avatar"
+                  accept="image/*"
+                  onChange={updateProductImagesChange}
+                  multiple
+                  className="border p-2 w-full"
+                />
+              </div>
 
-            <div className="mb-4">
-              {oldImages &&
-                oldImages.map((image, index) => (
+              <div className="mb-4">
+                {oldImages &&
+                  oldImages.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image.url}
+                      alt="Old Product Preview"
+                      className="w-32 h-32 object-cover mr-2"
+                    />
+                  ))}
+              </div>
+
+              <div className="mb-4">
+                {imagesPreview.map((image, index) => (
                   <img
                     key={index}
-                    src={image.url}
-                    alt="Old Product Preview"
+                    src={image}
+                    alt="Product Preview"
                     className="w-32 h-32 object-cover mr-2"
                   />
                 ))}
-            </div>
+              </div>
 
-            <div className="mb-4">
-              {imagesPreview.map((image, index) => (
-                <img
-                  key={index}
-                  src={image}
-                  alt="Product Preview"
-                  className="w-32 h-32 object-cover mr-2"
-                />
-              ))}
-            </div>
-
-            <button
-              id="createProductBtn"
-              type="submit"
-              disabled={loading ? true : false}
-              className="bg-blue-500 text-white p-2 rounded"
-            >
-              Update
-            </button>
-          </form>
+              <button
+                id="createProductBtn"
+                type="submit"
+                disabled={loading ? true : false}
+                className="bg-blue-500 text-white p-2 rounded"
+              >
+                Update
+              </button>
+            </form>
+          )}
         </div>
       </div>
       <Toaster position="top-right" reverseOrder={false} />

@@ -54,7 +54,7 @@ export const getAllProducts =
 
       let link = `${server}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
       if (category) {
-        link = `${server}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;// Include category only if it's defined
+        link = `${server}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`; // Include category only if it's defined
       }
       console.log("category:", link);
 
@@ -71,10 +71,6 @@ export const getAllProducts =
       });
     }
   };
-
-export const _getAllProducts = (category) => {
-  console.log(category);
-};
 
 // Get All Products For Admin
 export const getAdminProduct = () => async (dispatch) => {
@@ -158,7 +154,14 @@ export const deleteProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: "DELETE_PRODUCT_REQUEST" });
 
-    const { data } = await axios.delete(`${server}/api/v1/admin/product/${id}`);
+    const config = {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    };
+    const { data } = await axios.delete(
+      `${server}/api/v1/admin/product/${id}`,
+      config
+    );
 
     dispatch({
       type: "DELETE_PRODUCT_SUCCESS",
