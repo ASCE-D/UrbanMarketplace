@@ -21,6 +21,7 @@ const Home = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -38,6 +39,7 @@ const Home = () => {
     setCurrentIndex(slideIndex);
   };
 
+
   // useEffect(() => {
   //   // Auto-slide interval
   //   const autoSlideInterval = setInterval(() => {
@@ -52,16 +54,31 @@ const Home = () => {
   //   };
   // }, [currentIndex, slides.length]);
 
+
+  
+  useEffect(() => {
+    if (selectedCategory) {
+      console.log(selectedCategory);
+    }
+  
+  }, [selectedCategory])
+  const categoryHandler = (categoryName) => {
+    setSelectedCategory(categoryName);
+  };
+
   return (
     <>
       <div className="flex items-center justify-center">
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
+        <button
+          onClick={() => categoryHandler("smartphone")}
+          className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4"
+        >
           <img
             src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
             alt="Button Icon"
             className="w-16 h-16 mb-2"
           />
-          <span className="mb-2">Click Me</span>
+          <span className="mb-2">smartphone</span>
         </button>
         <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
           <img
@@ -137,7 +154,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Products itemsPerPage={4}/>
+        <Products category={selectedCategory}  />
       </div>
     </>
   );

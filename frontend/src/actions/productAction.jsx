@@ -41,16 +41,22 @@ import { server } from "../App";
 
 // Get All Products
 export const getAllProducts =
-  (keyword = "", currentPage = 1, price = [0, 2500000], category, ratings = 0) =>
+  (
+    keyword = "",
+    currentPage = 1,
+    price = [0, 2500000],
+    category,
+    ratings = 0
+  ) =>
   async (dispatch) => {
     try {
       dispatch({ type: "ALL_PRODUCT_REQUEST" });
 
       let link = `${server}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`;
-
       if (category) {
-        link = `${server}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;
+        link = `${server}/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`;// Include category only if it's defined
       }
+      console.log("category:", link);
 
       const { data } = await axios.get(link);
 
@@ -66,6 +72,10 @@ export const getAllProducts =
     }
   };
 
+export const _getAllProducts = (category) => {
+  console.log(category);
+};
+
 // Get All Products For Admin
 export const getAdminProduct = () => async (dispatch) => {
   try {
@@ -73,7 +83,7 @@ export const getAdminProduct = () => async (dispatch) => {
     const config = {
       withCredentials: true,
     };
-    const { data } = await axios.get(`${server}/api/v1/admin/products`,config);
+    const { data } = await axios.get(`${server}/api/v1/admin/products`, config);
 
     dispatch({
       type: "ADMIN_PRODUCT_SUCCESS",
@@ -89,12 +99,12 @@ export const getAdminProduct = () => async (dispatch) => {
 
 // Create Product
 export const createProduct = (jsonRepresentation) => async (dispatch) => {
-
   try {
     dispatch({ type: "NEW_PRODUCT_REQUEST" });
 
     const config = {
-      headers: { "Content-Type": "application/json" } , withCredentials: true ,
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
     };
 
     const { data } = await axios.post(
@@ -121,7 +131,8 @@ export const updateProduct = (id, productData) => async (dispatch) => {
     dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
 
     const config = {
-      headers: { "Content-Type": "application/json" }, withCredentials: true ,
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
     };
 
     const { data } = await axios.put(
@@ -186,7 +197,8 @@ export const newReview = (reviewData) => async (dispatch) => {
     dispatch({ type: "NEW_REVIEW_REQUEST" });
 
     const config = {
-      headers: { "Content-Type": "application/json" }, withCredentials: true 
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
     };
 
     const { data } = await axios.put(
