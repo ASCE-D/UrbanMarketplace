@@ -80,7 +80,7 @@ const ProductDetails = () => {
           </div>
           <div>
             <h1 className="text-2xl font-semibold mb-4">{product.name}</h1>
-            {user.role === "admin" ? (
+            {user && user.role === "admin" ? (
               <>
                 <button
                   onClick={editHandler}
