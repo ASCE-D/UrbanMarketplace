@@ -33,8 +33,10 @@ const Products = ({ category }) => {
   };
 
   return (
-    <div className="mx-16 mb-14">
-      <div className="grid grid-cols-4 gap-4 p-4">
+    <div className="mx-4 md:mx-16 mb-14">
+      {" "}
+      {/* Adjust margin for larger screens */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-4">
         {products.length > 0 ? (
           products.map((product) => (
             <Link to={`/product/${product._id}`} key={product._id}>
@@ -57,7 +59,6 @@ const Products = ({ category }) => {
           </h1>
         )}
       </div>
-
       {/* Pagination container with fixed height */}
       <div className="pagination-container h-16 flex justify-center items-center">
         <ReactPaginate
@@ -94,23 +95,23 @@ const ProductCard = ({
   handler,
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <div className="bg-white rounded-lg shadow-md p-2 md:p-4 mt-5 transform transition-transform hover:scale-105 hover:shadow-lg">
       <div className="relative">
         <img
           src={imgSrc}
           alt={name}
-          className="w-full h-60 object-cover rounded-md"
+          className="w-full h-48 md:h-60 object-cover rounded-t-md"
         />
         <span className="bg-green-500 text-white px-2 py-1 rounded-full absolute top-2 right-2">
           {stock > 0 ? "In Stock" : "Out of Stock"}
         </span>
       </div>
-      <h2 className="mt-2 text-lg font-semibold">{name}</h2>
+      <h2 className="mt-2 text-md font-semibold">{name}</h2>
       <p className="text-gray-500">₹{price}</p>
       <p className="text-gray-400">Ratings: {ratings}</p>
       <p className="text-gray-400">Reviews: {numOfReviews}</p>
       <button
-        className="mt-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-3 rounded-md"
+        className="mt-2 bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 md:px-3 rounded-md transition-transform hover:scale-105"
         onClick={() => handler({ name, price, id, quantity: 1, imgSrc })}
       >
         Add to Cart

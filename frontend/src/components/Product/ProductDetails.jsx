@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteProduct, getProductDetails, newReview } from "../../actions/productAction";
+import {
+  deleteProduct,
+  getProductDetails,
+  newReview,
+} from "../../actions/productAction";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import Loader from "../layouts/Loader/Loader";
 import ReviewCard from "./ReviewCard";
-import { BsPencil } from "react-icons/bs"; // Import the pencil icon
-import { AiFillDelete } from "react-icons/ai"; // Import the delete iconAiFillDelete
+import { BsPencil } from "react-icons/bs";
+import { AiFillDelete } from "react-icons/ai";
 
 const ProductDetails = () => {
   const params = useParams();
@@ -24,8 +28,7 @@ const ProductDetails = () => {
       toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, error ,params.id]);
-
+  }, [dispatch, error, params.id]);
 
   const addToCartHandler = (options) => {
     dispatch({ type: "addToCart", payload: options });
@@ -43,7 +46,7 @@ const ProductDetails = () => {
 
   const deleteHandler = () => {
     dispatch(deleteProduct(params.id));
-  }
+  };
 
   const reviewSubmitHandler = () => {
     const myForm = new FormData();
@@ -59,8 +62,8 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div>
-        {product.name}
+      <div className="mt-10">
+        {/* {product.name} */}
         <div className="grid grid-cols-2 gap-8">
           <div>
             {product && product.images && product.images.length > 0 ? (
@@ -96,7 +99,7 @@ const ProductDetails = () => {
                 </button>
               </>
             ) : null}
-            
+
             <p className="text-gray-500 mb-2">{product.description}</p>
             <p className="text-gray-700 text-lg font-semibold mb-2">
               ₹{product.price}
@@ -109,7 +112,7 @@ const ProductDetails = () => {
               {product.Stock > 0 ? "In Stock" : "Out of Stock"}
             </p>
             <button
-              className={`py-2 px-4 bg-blue-500 text-white rounded-md ${
+              className={`py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white rounded-md ${
                 product.Stock <= 0 && "opacity-50 cursor-not-allowed"
               }`}
               disabled={product.Stock <= 0}
@@ -128,7 +131,7 @@ const ProductDetails = () => {
 
             <button
               onClick={submitReviewToggle}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+              className=" m-2 bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md mt-2"
             >
               Submit Review
             </button>
@@ -192,8 +195,6 @@ const ProductDetails = () => {
           <p className="text-gray-500 mt-4">No Reviews Yet</p>
         )}
       </div>
-
-      {/* Pencil icon button */}
     </>
   );
 };

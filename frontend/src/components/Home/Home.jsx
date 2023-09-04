@@ -3,6 +3,22 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 
 import Products from "../Product/Products";
 
+const CategoryButton = ({ onClick, imageSrc, categoryName }) => {
+  return (
+    <button
+      onClick={onClick}
+      className="lex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-2"
+    >
+      <img
+        src={imageSrc}
+        alt={`${categoryName} Icon`}
+        className="w-16 h-16 mb-2"
+      />
+      <span className="mb-2">{categoryName}</span>
+    </button>
+  );
+};
+
 const Home = () => {
   const slides = [
     {
@@ -39,98 +55,91 @@ const Home = () => {
     setCurrentIndex(slideIndex);
   };
 
+  useEffect(() => {
+    // Auto-slide interval
+    const autoSlideInterval = setInterval(() => {
+      const isLastSlide = currentIndex === slides.length - 1;
+      const newIndex = isLastSlide ? 0 : currentIndex + 1;
+      setCurrentIndex(newIndex);
+    }, 2500); // Change this value to adjust the interval (1500ms = 1.5 seconds)
 
-  // useEffect(() => {
-  //   // Auto-slide interval
-  //   const autoSlideInterval = setInterval(() => {
-  //     const isLastSlide = currentIndex === slides.length - 1;
-  //     const newIndex = isLastSlide ? 0 : currentIndex + 1;
-  //     setCurrentIndex(newIndex);
-  //   }, 1500); // Change this value to adjust the interval (1500ms = 1.5 seconds)
+    // Clear the interval when the component unmounts or when currentIndex changes
+    return () => {
+      clearInterval(autoSlideInterval);
+    };
+  }, [currentIndex, slides.length]);
 
-  //   // Clear the interval when the component unmounts or when currentIndex changes
-  //   return () => {
-  //     clearInterval(autoSlideInterval);
-  //   };
-  // }, [currentIndex, slides.length]);
-
-
-  
   useEffect(() => {
     if (selectedCategory) {
       console.log(selectedCategory);
     }
-  
-  }, [selectedCategory])
+  }, [selectedCategory]);
   const categoryHandler = (categoryName) => {
     setSelectedCategory(categoryName);
   };
 
   return (
     <>
-      <div className="flex items-center justify-center">
-        <button
-          onClick={() => categoryHandler("smartphone")}
-          className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4"
-        >
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">smartphone</span>
-        </button>
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">Click Me</span>
-        </button>
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">Click Me</span>
-        </button>
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">Click Me</span>
-        </button>
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">Click Me</span>
-        </button>
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">Click Me</span>
-        </button>
-        <button className="flex flex-col items-center justify-end w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-0 m-4">
-          <img
-            src="https://fastly.picsum.photos/id/818/536/354.jpg?hmac=9b5A8R6fKbs0srgPo_LmKDOY67GM1hHi9dAeiqMCTEc"
-            alt="Button Icon"
-            className="w-16 h-16 mb-2"
-          />
-          <span className="mb-2">Click Me</span>
-        </button>
+      <div className="w-full lg:overflow-x-hidden overflow-x-scroll py-4">
+        <div className="flex xl:justify-center space-x-4 p-2">
+          <button
+            onClick={() => categoryHandler("smartphone")}
+            className="flex-shrink-0 w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dozjpzjiv/image/upload/v1693772690/products/iynqfjijdgwpjevildaj.png"
+              alt="Button Icon"
+              className="w-16 h-16 mb-2 mx-auto"
+            />
+            <span className="text-sm text-center">Smartphone</span>
+          </button>
+          <button
+            onClick={() => categoryHandler("electronics")}
+            className="flex-shrink-0 w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dozjpzjiv/image/upload/v1693772690/products/vxg370r0mes6gmxcgdiv.png"
+              alt="Button Icon"
+              className="w-16 h-16 mb-2 mx-auto"
+            />
+            <span className="text-sm text-center">Electronics</span>
+          </button>
+          <button
+            onClick={() => categoryHandler("graphics")}
+            className="flex-shrink-0 w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dozjpzjiv/image/upload/v1693830485/dtbiul6hgksv3meuvryo.png"
+              alt="Button Icon"
+              className="w-16 h-16 mb-2 mx-auto"
+            />
+            <span className="text-sm text-center">Graphics</span>
+          </button>
+          <button
+            onClick={() => categoryHandler("monitor")}
+            className="flex-shrink-0 w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dozjpzjiv/image/upload/c_scale,h_80,w_80/products/v8prbcilxwssmtiatxoj.jpg"
+              alt="Button Icon"
+              className="w-16 h-16 mb-2 mx-auto"
+            />
+            <span className="text-sm text-center">Monitor</span>
+          </button>
+          <button
+            onClick={() => categoryHandler("keyboard")}
+            className="flex-shrink-0 w-24 h-32 bg-white text-black rounded-lg hover:bg-gray-100 focus:outline-none p-2"
+          >
+            <img
+              src="https://res.cloudinary.com/dozjpzjiv/image/upload/c_scale,h_80,w_80/products/r8xxygib7pkdqirhxsd6.jpg"
+              alt="Button Icon"
+              className="w-16 h-16 mb-2 mx-auto"
+            />
+            <span className="text-sm text-center">Keyboard</span>
+          </button>
+        </div>
       </div>
-
-      <div className="w-[90%] h-[480px]  m-auto py-16 px-4 relative group">
+      <div className="w-full md:w-[90%] h-[400px] lg:h-[600px] m-auto py-16 px-4 relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
           className="w-full h-full rounded-2xl bg-center bg-cover duration-500"
@@ -154,7 +163,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Products category={selectedCategory}  />
+        <Products category={selectedCategory} />
       </div>
     </>
   );
