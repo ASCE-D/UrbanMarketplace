@@ -13,7 +13,7 @@ const Products = ({ category }) => {
   );
   const dispatch = useDispatch();
   const keyword = params.keyword;
-  console.log(products);
+  // console.log(products);
   const [currentPage, setCurrentPage] = useState(1);
   const [price, setPrice] = useState([0, 250000]);
   const [ratings, setRatings] = useState();

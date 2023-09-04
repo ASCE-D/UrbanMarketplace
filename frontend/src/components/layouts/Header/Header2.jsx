@@ -1,19 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../actions/userAction";
 
-const Header = () => {
-  const { cartItems } = useSelector((state) => state.cart);
-  const { isAuthenticated } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  const logoutHandler = () => {
-    dispatch(logout());
-  };
-  const [keyword, setKeyword] = useState("");
+const MobileComponent = () => {
   const navigate = useNavigate();
-
+  const [keyword, setKeyword] = useState("");
   const searchSubmitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
@@ -22,44 +15,119 @@ const Header = () => {
       navigate("/products");
     }
   };
+  return (
+    <form
+      className="w-full flex items-center justify-center  mt-4 bg-white border rounded-md overflow-hidden shadow-md"
+      onSubmit={searchSubmitHandler}
+    >
+      <div className="flex w-full">
+        <input
+          type="text"
+          className="flex-grow px-4 py-1 text-black border-none focus:ring-0 focus:outline-none"
+          placeholder="Search for products..."
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+        <button
+          type="submit"
+          className="px-6 py-2 text-black font-semibold flex items-center justify-center transition duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-black pt-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M15 15l6-6m0 0l-6-6m6 6H3"
+            />
+          </svg>
+        </button>
+      </div>
+    </form>
+  );
+};
+
+const DesktopComponent = () => {
+  const navigate = useNavigate();
+  const [keyword, setKeyword] = useState("");
+  const searchSubmitHandler = (e) => {
+    e.preventDefault();
+    if (keyword.trim()) {
+      navigate(`/products/${keyword}`);
+    } else {
+      navigate("/products");
+    }
+  };
+  return (
+    <form
+      className="flex items-center justify-center mx-8 bg-white border rounded-md overflow-hidden shadow-md"
+      onSubmit={searchSubmitHandler}
+    >
+      <input
+        type="text"
+        className="text-black flex-grow px-4 py-1 border-none focus:ring-0 focus:outline-none"
+        placeholder="Search for products..."
+        onChange={(e) => setKeyword(e.target.value)}
+      />
+      <button
+        type="submit"
+        className=" px-6 py-2 text-black font-semibold flex items-center justify-center  transition duration-300"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 text-black pt-1"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M15 15l6-6m0 0l-6-6m6 6H3"
+          />
+        </svg>
+      </button>
+    </form>
+  );
+};
+
+const Header = () => {
+  const { cartItems } = useSelector((state) => state.cart);
+  const { isAuthenticated } = useSelector((state) => state.user);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
+  useEffect(() => {
+    // Update the isMobile state when the window is resized
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener on unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
-    <nav className="bg-black text-white p-6 z-[100]  w-full">
-      <div className="container mx-auto flex justify-between items-center">
+    <nav className="bg-black text-white p-6 z-[100]  w-full flex flex-col">
+      <div className="container flex flex-row justify-between items-center">
         <Link to="/">
-          <h2 className="text-xl font-semibold">UrbanMarketplace</h2>
+          <h2 className={`text-${isMobile?'sm':'xl'} font-semibold`}>UrbanMarketplace</h2>
         </Link>
 
-        <form
-          className="flex items-center justify-center mx-8 bg-white border rounded-md overflow-hidden shadow-md"
-          onSubmit={searchSubmitHandler}
-        >
-          <input
-            type="text"
-            className="text-black flex-grow px-4 py-1 border-none focus:ring-0 focus:outline-none"
-            placeholder="Search for products..."
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-          <button
-            type="submit"
-            className=" px-6 py-2 text-black font-semibold flex items-center justify-center  transition duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-black pt-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M15 15l6-6m0 0l-6-6m6 6H3"
-              />
-            </svg>
-          </button>
-        </form>
+        {!isMobile ? <DesktopComponent /> : null}
 
         {/* <div className="flex items-center space-x-4">
           <div className="relative">
@@ -111,7 +179,7 @@ const Header = () => {
             </svg>
           </a>
         </div> */}
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-row items-center space-x-4">
           <div>
             {isAuthenticated ? (
               <div className="flex items-center space-x-4">
@@ -138,7 +206,7 @@ const Header = () => {
                 </button>
               </div>
             ) : (
-              <button className="flex items-center hover:text-gray-300">
+              <button className="flex flex-row items-center hover:text-gray-300">
                 <Link to="/login">Login</Link>
               </button>
             )}
@@ -149,6 +217,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
+      {isMobile ? <MobileComponent /> : null}
     </nav>
   );
 };
