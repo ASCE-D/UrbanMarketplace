@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiShoppingBag } from "react-icons/fi";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../../actions/userAction";
+import { getAllProducts } from "../../../actions/productAction";
 
 const MobileComponent = () => {
   const navigate = useNavigate();
@@ -106,6 +107,10 @@ const Header = () => {
     dispatch(logout());
   };
 
+  const reloadHandler = () => {
+    dispatch(getAllProducts());
+  }
+
   useEffect(() => {
     // Update the isMobile state when the window is resized
     const handleResize = () => {
@@ -123,9 +128,9 @@ const Header = () => {
   return (
     <nav className="bg-black text-white p-6 z-[100]  w-full flex flex-col">
       <div className="container flex flex-row justify-between items-center">
-        <Link to="/">
+        <button onClick={reloadHandler}>
           <h2 className={`text-${isMobile?'sm':'xl'} font-semibold`}>UrbanMarketplace</h2>
-        </Link>
+        </button>
 
         {!isMobile ? <DesktopComponent /> : null}
 
