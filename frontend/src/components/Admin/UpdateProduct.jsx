@@ -267,7 +267,7 @@ const UpdateProduct = () => {
     "keyboard",
     "graphics",
     "monitor",
-    "camera",
+    "electronics",
     "smartPhones",
     "other"
   ];
