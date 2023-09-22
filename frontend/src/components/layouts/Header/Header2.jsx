@@ -109,8 +109,8 @@ const Header = () => {
 
   const reloadHandler = () => {
     dispatch(getAllProducts());
+    navigate('/'); // This will redirect to the homepage
   }
-
   useEffect(() => {
     // Update the isMobile state when the window is resized
     const handleResize = () => {
