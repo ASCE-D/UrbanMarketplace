@@ -1,58 +1,103 @@
-import React, { useEffect } from "react";
-import { getAdminProduct } from "../../actions/productAction";
-import { getAllUsers } from "../../actions/userAction";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "./Sidebar";
-
+import React from 'react';
+import {
+  Drawer,
+  DrawerBody,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  Button,
+  useDisclosure,
+  VStack,
+  HStack,
+} from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
+import { BiMenuAltLeft } from 'react-icons/bi';
 
 const Dashboard = () => {
-  const { user } = useSelector((state) => state.user);
-  const { users } = useSelector((state) => state.allUsers);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    dispatch(getAllUsers(user));
-  }, [dispatch, user]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 py-6">
-      
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-          <p className="text-gray-700 mt-2">Logged in as: {user.email}</p>
-          <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {users &&
-              users.map((u) => (
-                <div
-                  key={u._id}
-                  className={`bg-white overflow-hidden shadow-md rounded-lg ${
-                    u._id === user._id ? "outline-dotted" : ""
-                  }`}
-                >
-                  <div className="p-4">
-                    <h3 className="text-lg font-medium text-gray-900">
-                      Name: {u.name}
-                    </h3>
-                    <p className="mt-2 text-sm text-gray-500">
-                      Email: {u.email}
-                    </p>
-                    <p className="mt-2 text-sm text-gray-500">
-                      CreatedAt: {u.createdAt}
-                    </p>
-                    <p className="mt-2 text-sm text-gray-500">Role: {u.role}</p>
+      <Button
+        zIndex={'overlay'}
+        pos={'fixed'}
+        top={'4'}
+        left={'4'}
+        colorScheme="purple"
+        p={'0'}
+        w={'10'}
+        h={'10'}
+        borderRadius={'full'}
+        onClick={onOpen}
+      >
+        <BiMenuAltLeft size={'20'} />
+      </Button>
 
-                    {/* Add more user information here */}
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-      </div>
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+        <DrawerOverlay />
+
+        <DrawerContent>
+          <DrawerCloseButton />
+          <DrawerHeader>UrbanMarketPlace</DrawerHeader>
+          <DrawerBody>
+            <VStack alignItems={'flex-start'}>
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/admin/products'}>Products</Link>
+              </Button>
+
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/admin/users'}>users</Link>
+              </Button>
+
+              {/* <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/videos?category=free'}>orders</Link>
+              </Button> */}
+
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/admin/product'}>NewProduct</Link>
+              </Button>
+            </VStack>
+
+            {/* <HStack
+              pos={'absolute'}
+              bottom={'10'}
+              left={'0'}
+              w={'full'}
+              justifyContent={'space-evenly'}
+            >
+              <Button onClick={onClose} colorScheme={'purple'}>
+                <Link to={'/login'}>Log In</Link>
+              </Button>
+              <Button
+                onClick={onClose}
+                colorScheme={'purple'}
+                variant={'outline'}
+              >
+                <Link to={'/signup'}>Sign Up</Link>
+              </Button>
+            </HStack> */}
+          </DrawerBody>
+        </DrawerContent>
+      </Drawer>
     </>
   );
 };
-
-export default Dashboard;
+ 
+export default Dashboard

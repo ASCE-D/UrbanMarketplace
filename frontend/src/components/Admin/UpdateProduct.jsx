@@ -273,7 +273,7 @@ const UpdateProduct = () => {
   ];
 
   useEffect(() => {
-    if (product && product.id !== params.id) {
+    if (product && product._id !== params.id) {
       dispatch(getProductDetails(params.id));
     } else {
       setName(product.name);

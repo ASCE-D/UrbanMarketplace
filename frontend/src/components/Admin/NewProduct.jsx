@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createProduct, clearErrors } from "../../actions/productAction";
 import { toast } from "react-hot-toast";
+import Dashboard from './Dashboard';
 
 const NewProduct = () => {
   const dispatch = useDispatch();
@@ -89,6 +90,8 @@ const NewProduct = () => {
   };
 
   return (
+    <>
+    <Dashboard/>
     <div className="p-6 bg-gray-100">
       <h1 className="text-3xl font-semibold mb-6 text-center">
         Create Product
@@ -192,6 +195,7 @@ const NewProduct = () => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 
