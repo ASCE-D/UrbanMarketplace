@@ -29,6 +29,7 @@ import UpdateProfile from "./components/User/UpdateProfile";
 import Process from "./components/Cart/Process";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
+import UsersList from "./components/Admin/UsersList";
 
 export const server = "https://urbanmarketplace-api.onrender.com";
 // export const server = "http://localhost:5000";
@@ -133,6 +134,15 @@ function App() {
             element={
               <ProtectedRoute isAdmin={true}>
                 <UpdateProduct />
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/admin/users"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <UsersList />
               </ProtectedRoute>
             }
           />
