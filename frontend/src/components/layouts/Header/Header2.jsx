@@ -126,8 +126,8 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="bg-black text-white p-6 z-[100]  w-full flex flex-col">
-      <div className="container flex flex-row justify-between items-center">
+     <nav className="bg-black text-white p-6 z-[100] w-full flex flex-col items-center justify-center">
+      <div className="container flex flex-row justify-between items-center w-full max-w-5xl">
         <button onClick={reloadHandler}>
           <h2 className={`text-${isMobile?'sm':'xl'} font-semibold`}>UrbanMarketplace</h2>
         </button>
