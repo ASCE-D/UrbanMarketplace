@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import { Box, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { Doughnut, Line } from "react-chartjs-2";
+
 import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction";
