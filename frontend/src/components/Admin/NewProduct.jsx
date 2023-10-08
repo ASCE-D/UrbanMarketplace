@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createProduct, clearErrors } from "../../actions/productAction";
 import { toast } from "react-hot-toast";
 import Dashboard from './Dashboard';
-
+import Sidebar from './Sidebar';
 const NewProduct = () => {
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -91,7 +91,7 @@ const NewProduct = () => {
 
   return (
     <>
-    <Dashboard/>
+    <Sidebar/>
     <div className="p-6 bg-gray-100">
       <h1 className="text-3xl font-semibold mb-6 text-center">
         Create Product
