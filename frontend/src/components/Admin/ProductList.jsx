@@ -35,7 +35,7 @@ const onDelete = (product) => {
 
   return (
     <div>
-      <Dashboard/>
+      <Sidebar/>
         <div>
       {products.map((product) => (
         <Box
