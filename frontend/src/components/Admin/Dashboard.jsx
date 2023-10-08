@@ -1,103 +1,115 @@
-import React from 'react';
-import {
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-  Button,
-  useDisclosure,
-  VStack,
-  HStack,
-} from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
-import { BiMenuAltLeft } from 'react-icons/bi';
+import React, { useEffect } from "react";
+import Sidebar from "./Sidebar";
+import { Box, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Doughnut, Line } from "react-chartjs-2";
+import { useSelector, useDispatch } from "react-redux";
+import { getAdminProduct } from "../../actions/productAction";
+import { getAllOrders } from "../../actions/orderAction";
+import { getAllUsers } from "../../actions/userAction";
 
 const Dashboard = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useDispatch();
+
+  const { products } = useSelector((state) => state.products);
+  const { orders } = useSelector((state) => state.allOrders);
+  const { users } = useSelector((state) => state.allUsers);
+
+  let outOfStock = 0;
+
+  products &&
+    products.forEach((item) => {
+      if (item.Stock === 0) {
+        outOfStock += 1;
+      }
+    });
+
+  useEffect(() => {
+    dispatch(getAdminProduct());
+    dispatch(getAllOrders());
+    dispatch(getAllUsers());
+  }, [dispatch]);
+
+  let totalAmount = 0;
+  orders &&
+    orders.forEach((item) => {
+      totalAmount += item.totalPrice;
+    });
+
+  // const lineState = {
+  //   labels: ["Initial Amount", "Amount Earned"],
+  //   datasets: [
+  //     {
+  //       label: "TOTAL AMOUNT",
+  //       backgroundColor: ["tomato"],
+  //       hoverBackgroundColor: ["rgb(197, 72, 49)"],
+  //       data: [0, totalAmount],
+  //     },
+  //   ],
+  // };
+
+  // const doughnutState = {
+  //   labels: ["Out of Stock", "InStock"],
+  //   datasets: [
+  //     {
+  //       backgroundColor: ["#00A6B4", "#6800B4"],
+  //       hoverBackgroundColor: ["#4B5000", "#35014F"],
+  //       data: [outOfStock, products.length - outOfStock],
+  //     },
+  //   ],
+  // };
 
   return (
-    <>
-      <Button
-        zIndex={'overlay'}
-        pos={'fixed'}
-        top={'4'}
-        left={'4'}
-        colorScheme="purple"
-        p={'0'}
-        w={'10'}
-        h={'10'}
-        borderRadius={'full'}
-        onClick={onOpen}
-      >
-        <BiMenuAltLeft size={'20'} />
-      </Button>
+    <div className="flex">
+      <Sidebar />
 
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
-        <DrawerOverlay />
+      <div className="ml-64 p-4">
+        <Text as="h1" fontSize="2xl" mb="4">
+          Dashboard
+        </Text>
 
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>UrbanMarketPlace</DrawerHeader>
-          <DrawerBody>
-            <VStack alignItems={'flex-start'}>
-              <Button
-                onClick={onClose}
-                variant={'ghost'}
-                colorScheme={'purple'}
-              >
-                <Link to={'/admin/products'}>Products</Link>
-              </Button>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Box p="4" bg="white" borderRadius="md">
+            <Text>Total Amount</Text>
+            <Text fontSize="2xl">₹{totalAmount}</Text>
+          </Box>
 
-              <Button
-                onClick={onClose}
-                variant={'ghost'}
-                colorScheme={'purple'}
-              >
-                <Link to={'/admin/users'}>users</Link>
-              </Button>
+          <Link to="/admin/products">
+            <Box p="4" bg="white" borderRadius="md" cursor="pointer">
+              <Text>Product</Text>
+              <Text fontSize="2xl">{products && products.length}</Text>
+            </Box>
+          </Link>
 
-              {/* <Button
-                onClick={onClose}
-                variant={'ghost'}
-                colorScheme={'purple'}
-              >
-                <Link to={'/videos?category=free'}>orders</Link>
-              </Button> */}
+          <Link to="/admin/orders">
+            <Box p="4" bg="white" borderRadius="md" cursor="pointer">
+              <Text>Orders</Text>
+              <Text fontSize="2xl">{orders && orders.length}</Text>
+            </Box>
+          </Link>
 
-              <Button
-                onClick={onClose}
-                variant={'ghost'}
-                colorScheme={'purple'}
-              >
-                <Link to={'/admin/product'}>NewProduct</Link>
-              </Button>
-            </VStack>
+          <Link to="/admin/users">
+            <Box p="4" bg="white" borderRadius="md" cursor="pointer">
+              <Text>Users</Text>
+              <Text fontSize="2xl">{users && users.length}</Text>
+            </Box>
+          </Link>
+        </div>
 
-            {/* <HStack
-              pos={'absolute'}
-              bottom={'10'}
-              left={'0'}
-              w={'full'}
-              justifyContent={'space-evenly'}
-            >
-              <Button onClick={onClose} colorScheme={'purple'}>
-                <Link to={'/login'}>Log In</Link>
-              </Button>
-              <Button
-                onClick={onClose}
-                colorScheme={'purple'}
-                variant={'outline'}
-              >
-                <Link to={'/signup'}>Sign Up</Link>
-              </Button>
-            </HStack> */}
-          </DrawerBody>
-        </DrawerContent>
-      </Drawer>
-    </>
+        {/* <div className="mt-8">
+          <Box bg="white" p="4" borderRadius="md">
+            <Line data={lineState} />
+          </Box>
+        </div> */}
+
+        {/* <div className="mt-8">
+          <Box bg="white" p="4" borderRadius="md">
+            <Doughnut data={doughnutState} />
+          </Box>
+        </div> */}
+      </div>
+    </div>
   );
 };
- 
-export default Dashboard
+
+export default Dashboard;
