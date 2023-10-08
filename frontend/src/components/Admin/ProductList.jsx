@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { useNavigate } from 'react-router-dom';
 import Dashboard from './Dashboard';
-
+import Sidebar from './Sidebar';
 
 
 
