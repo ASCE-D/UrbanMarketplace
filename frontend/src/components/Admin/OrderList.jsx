@@ -166,12 +166,12 @@ const OrderList = () => {
         <Td>{row.amount}</Td>
         <Td>
           <Link to={`/admin/order/${row.id}`}>
-            {/* Chakra UI icon for Edit */}bruy
+            {/* Chakra UI icon for Edit */}update status
           </Link>
           <Button
             onClick={() => deleteOrderHandler(row.id)}
           >
-            {/* Chakra UI icon for Delete */}
+            {/* Chakra UI icon for Delete */}delete
           </Button>
         </Td>
       </Tr>
