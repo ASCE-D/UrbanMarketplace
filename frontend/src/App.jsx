@@ -79,13 +79,7 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
-              </ProtectedRout
-￼￼
-￼Logout
-￼
-0
-￼
-e>
+              </ProtectedRoute>
             }
           />
 
