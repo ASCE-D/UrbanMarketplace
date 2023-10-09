@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAdminProduct } from "../../actions/productAction";
 import { getAllOrders } from "../../actions/orderAction";
 import { getAllUsers } from "../../actions/userAction";
+import OrderList from "./OrderList";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -108,6 +109,7 @@ const Dashboard = () => {
           </Box>
         </div> */}
       </div>
+      <OrderList/>
     </div>
   );
 };

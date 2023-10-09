@@ -64,6 +64,20 @@ const Sidebar = () => {
               >
                 <Link to={'/admin/users'}>users</Link>
               </Button>
+              <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/admin/orders'}>orderlist</Link>
+              </Button>
+              {/* <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/admin/process'}>process</Link>
+              </Button> */}
 
               {/* <Button
                 onClick={onClose}

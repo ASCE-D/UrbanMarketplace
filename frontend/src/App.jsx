@@ -31,6 +31,8 @@ import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
 import UsersList from "./components/Admin/UsersList";
 import OrderDetails from "./components/Order/OrderDetails";
+import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
 
 export const server = "https://urbanmarketplace-api.onrender.com";
 // export const server = "http://localhost:5000";
@@ -77,7 +79,13 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
-              </ProtectedRoute>
+              </ProtectedRout
+￼￼
+￼Logout
+￼
+0
+￼
+e>
             }
           />
 
@@ -148,6 +156,22 @@ function App() {
             }
           />
           <Route
+            path="/admin/orders"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <OrderList/>
+              </ProtectedRoute>
+            }
+          />
+             <Route
+            path="/admin/order/:id"
+            element={
+              <ProtectedRoute isAdmin={true}>
+                <ProcessOrder/>
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/orders"
             element={
               <ProtectedRoute>
@@ -155,6 +179,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          
             <Route
             path="/order/:id"
             element={
