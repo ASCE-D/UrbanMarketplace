@@ -42,6 +42,13 @@ const Sidebar = () => {
           <DrawerHeader>UrbanMarketPlace</DrawerHeader>
           <DrawerBody>
             <VStack alignItems={'flex-start'}>
+            <Button
+                onClick={onClose}
+                variant={'ghost'}
+                colorScheme={'purple'}
+              >
+                <Link to={'/admin'}>Dashboard</Link>
+              </Button>
               <Button
                 onClick={onClose}
                 variant={'ghost'}

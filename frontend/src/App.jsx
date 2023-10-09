@@ -30,6 +30,7 @@ import Process from "./components/Cart/Process";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
 import UsersList from "./components/Admin/UsersList";
+import OrderDetails from "./components/Order/OrderDetails";
 
 export const server = "https://urbanmarketplace-api.onrender.com";
 // export const server = "http://localhost:5000";
@@ -151,6 +152,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <MyOrders />
+              </ProtectedRoute>
+            }
+          />
+            <Route
+            path="/order/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
               </ProtectedRoute>
             }
           />
