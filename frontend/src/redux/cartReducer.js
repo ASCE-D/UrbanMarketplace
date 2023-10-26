@@ -1,8 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+
 export const cartReducer = createReducer(
   {
-    cartItems: [],
+    cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
     shippingInfo: {},
     subTotal: 0,
     shipping: 0,
@@ -21,6 +24,7 @@ export const cartReducer = createReducer(
       } else {
         state.cartItems.push(item);
       }
+      localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
     },
 
     decrement: (state, action) => {
@@ -39,7 +43,7 @@ export const cartReducer = createReducer(
       let sum = 0;
       state.cartItems.forEach((i) => (sum += i.price * i.quantity));
       state.subTotal = sum;
-      state.shipping = state.subTotal > 1000 || state.subTotal === 0? 0 : 200;
+      state.shipping = state.subTotal > 1000 || state.subTotal === 0 ? 0 : 200;
       state.tax = +(state.subTotal * 0.18).toFixed();
       state.total = state.subTotal + state.tax + state.shipping;
     },

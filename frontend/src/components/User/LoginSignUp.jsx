@@ -3,9 +3,11 @@ import Loader from "../layouts/Loader/Loader";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate and useLocation
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
-import profileimage from "../../images/Profile.png";
+// import profileimage from "../../images/Profile.png";
 import toast from "react-hot-toast";
 import "./LoginSignUp.css"
+
+const profileimage = "https://res.cloudinary.com/dozjpzjiv/image/upload/v1698314286/avatars/miqgoebbsjj0vdbbfcsn.png"
 
 const LoginSignUp = () => {
   const dispatch = useDispatch();
@@ -41,7 +43,7 @@ const LoginSignUp = () => {
   const registerSubmit = (e) => {
     e.preventDefault();
     const myForm = new FormData();
-
+    console.log(myForm)
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("password", password);
@@ -60,7 +62,11 @@ const LoginSignUp = () => {
         }
       };
 
-      reader.readAsDataURL(e.target.files[0]);
+      if (e.target.files[0]) {
+        reader.readAsDataURL(e.target.files[0]);
+      }else{
+        reader.readAsDataURL(profileimage);
+      }
     } else {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
@@ -97,10 +103,10 @@ const LoginSignUp = () => {
     }
   };
   return (
-    <>
-      {loading ? (
-        <Loader />
-      ) : (
+    // <>
+    //   {loading ? (
+    //     <Loader />
+    //   ) : (
         <>
           <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
@@ -184,8 +190,8 @@ const LoginSignUp = () => {
             </div>
           </div>
         </>
-      )}
-    </>
+  //     )}
+  //   </>
   );
 };
 

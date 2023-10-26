@@ -33,12 +33,13 @@ export const register = (userData) => async (dispatch) => {
       headers: { "Content-Type": "multipart/form-data" },
       withCredentials: true,
     };
-
+    console.log("register",userData);
     const { data } = await axios.post(
       `${server}/api/v1/register`,
       userData,
       config
     );
+    console.log("axios",data)
 
     dispatch({ type: "REGISTER_USER_SUCCESS", payload: data.user });
   } catch (error) {
@@ -75,7 +76,8 @@ export const logout = () => async (dispatch) => {
       withCredentials: true,
     };
     await axios.get(`${server}/api/v1/logout`, config);
-
+    localStorage.removeItem('cartItems');
+    
     dispatch({ type: "LOGOUT_SUCCESS" });
   } catch (error) {
     dispatch({ type: "LOGOUT_FAIL", payload: error.response.data.message });
