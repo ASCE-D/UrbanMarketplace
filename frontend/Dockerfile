@@ -2,12 +2,12 @@ FROM node:20
 
 WORKDIR /client
 
-COPY . .
+COPY package* .
 
 RUN npm install
 
-# COPY . .
+COPY . .
 
-# EXPOSE 5173
+EXPOSE 5173
 
 CMD ["npm", "run", "dev"]
