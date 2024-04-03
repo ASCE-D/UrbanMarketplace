@@ -139,7 +139,7 @@ const Payment = () => {
             type="submit"
             value={`Pay - ₹${orderInfo && orderInfo.totalPrice}`}
             ref={payBtn}
-{/*             className="paymentFormBtn" */}
+            //className="paymentFormBtn"
           />
         </form>
       </div>
